@@ -2472,7 +2472,62 @@ would be false since the types do not match (one is an integer, the other a stri
  ¬(a And b) and ¬a Or ¬b
 
 
-Page 107
+  - Order of Precedence:
+
+ In particular, negations are always applied first, followed by And operators, and then lastly Or operators.
+
+ - Tautologies and Contradictions:
+
+ A statement that is always true regardless of the truth values of its variables is a tautology.
+
+ Ex: 
+ a Or ¬a 
+
+ A statement that is always false regardless of the truth values of its variables is a contradiction.
+ Ex:
+ aAnd¬a
+
+ - Defensive programming:
+
+ Essentially checking the conditions for an invalid operation before performing that operation.
+
+ Ex:
+ 1 if y != 0 then 
+ 2 q ← x/y
+ 3 end
+
+ if we checked whether or not the denominator is zero before we compute the quotient then we could prevent such errors.
+
+ - Short Circuiting:
+
+a And b
+
+As we evaluate this statement, suppose that we find that a is false. Do we need to examine the truth value of b? The answer is no. Now imagine evaluating this statement in a computer. If the first operand of an And statement is false, we don’t need to examine/evaluate the second. This has some potential for improved efficiency: if the second operand does not need to be evaluated, a program could ignore it and save a few CPU cycles. 
+
+This is now known as short circuiting and to this day is still supported in most programming languages.
+
+For example, short-circuiting is used to check that a variable is valid (defined or not Null) before using it, or to check that an index variable is within the range of an array’s size before accessing a value.
+
+An operator is COMMUTATIVE if the order of its operands is irrelevant. For example, addition and multiplication are both commutative, Division and substraction aren't.
+
+In logic, the And and Or operators are commutative, but when used in most programming
+languages they are not,
+
+(aAndb)̸=(bAnda) and (aOrb)̸=(bOra)
+
+It is important to emphasize that they are still logically equivalent, but they are not effectively equivalent: because of short-circuiting, each of these statements have a potentially different effect.
+
+- Loops :
+
+Loops provide a much better alternative than repeating (cut-paste-cut-paste) the same code over and over with different variables. Loops allow us to write concise, repeatable code that can be applied to each element in a collection or perform a task over and over again until some condition is met.
+
+there are three essential components:
+
+• An initialization statement that specifies how the loop begins.
+• A continuation (or termination) condition that specifies whether the loop should
+continue to execute or terminate.
+• An iteration statement that makes progress toward the termination condition.
+
 
 // Data structures review //
 
