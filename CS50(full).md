@@ -2528,6 +2528,110 @@ there are three essential components:
 continue to execute or terminate.
 • An iteration statement that makes progress toward the termination condition.
 
+ -  While Loops :
+ 
+ A while loop is a type of loop that places the three components in their logical order. The initialization statement is written before the loop code. Typically the keyword while is used to specify the continuation/termination condition.
+
+ 1 i ← 1 //Initialization statement 
+ 2 while (i ≤ 10) do 
+ 3 Perform some action 
+ 4 i ← (i + 1) //Iteration statement 
+ 5 end
+
+ -  For Loops :
+
+ A for loop is similar to a while loop but allows you to specify the three components on the same line. In many cases, this results in a loop that is more readable.
+
+ 1 for (<initialization>; <continuation>; <iteration>) do 
+ 2 Perform some action 
+ 3 end
+
+ Ex:
+
+ 1 for ( i ← 1; i ≤ 10; i ← (i + 1) ) do 
+ 2 Perform some action 
+ 3 end
+
+ Again, the initialization of i = 1 is only performed once. On the ﬁrst iteration of the loop, i = 1 and so sum will be given the value sum+i = 0+1 = 1 At the end of the loop, i will be incremented and will have a value of 2.
+
+ - Do-While Loops:
+
+ Yet another type of loop is the do-while loop. One major diﬀerence between this type of loop and the others is that it is always executed at least once.
+
+ The way that this is achieved is that the continuation condition is checked at the end of the loop rather than prior to is execution.
+
+ 1 i ← 1 
+ 2 do 
+ 3 Perform some action 
+ 4 i ← (i + 1) 
+ 5 while i ≤ 10
+
+ Do-while loops are typically used in scenarios in which the ﬁrst iteration is used to “setup” the continuation condition (thus, it needs to be executed at least once). A common example is if the loop body performs an operation that may result in an error code (or ﬂag) that is either true (an error occurred) or false (no error occurred).
+ From this perspective, a do-while loop can also be seen as a do-until loop: perform a task until some condition is no longer satisﬁed. The subtle wording diﬀerence implies
+
+ 1 do 
+ 2 Read some data 
+ 3 isError ← result of reading 
+ 4 while isError
+
+ - Foreach Loops:
+
+ Many languages support a special type of loop for iterating over individual elements in a collection (such as a set, list, or an array). In general, such loops are referred to as foreach loops. These types of loops are essentially syntactic sugar: iterating over a collection could be achieved with a for loop or a while loop, but foreach loops provide a more convenient way to iterate over a collections.
+
+ 1 foreach element a in the collection A do 
+ 2 process the element a 
+ 3 end
+
+ How the elements are stored in the collection and how they are iterated over is not our (primary) concern. We simply want to apply the same block of code to each element, the foreach loop handles the details on how each element is iterated over. The syntax also provides a way to refer to each element (the a variable in the algorithm). 
+
+ In this way, a foreach loop simpliﬁes the syntax: we don’t have to specify any of the three components ourselves
+
+ - Nested Loops:
+
+ Just as with conditional statements, we can nest loops within loops to perform more complex processes. Though you can do this with any type of loop, we present a simple example using for loops in Algorithm.
+
+ 1 n ← 10 
+ 2 m ← 20 
+ 3 for (i ← 1; i ≤ m; i ← (i + 1)) do 
+ 4 for (j ← 1; j ≤ n; j ← (j + 1)) do 
+ 5 output (i,j) 
+ 6 end 
+ 7 end
+
+ - Inﬁnite Loops:
+
+ Sometimes a simple mistake in the design of a loop can make it execute forever.
+
+ - Loops errors:
+
+ Recall that operations involving ﬂoating-point numbers can have round oﬀ and precision errors, 1 3 + 1 3 + 1 3 may not be equal to one for example. It is best to avoid using ﬂoating-point numbers or comparisons in the control of your loops.
+
+ Boolean and integer types are much less error prone.
+
+ Finally, you must always ensure that your loops are making progress toward the termination condition. A failure to properly increment a counter can lead to incorrect results or even an inﬁnite loop.
+
+ - Equivalency of Loops:
+
+ It might not seem obvious at ﬁrst, but in fact, any type of loop can be re-written as another type of loop and perform equivalent operations. That is, any while loop can be rewritten as an equivalent for loop. Any do-while loop can be rewritten as an equivalent while loop!
+
+ So why do we have diﬀerent types of loops? The short answer is that we want our programming languages to be ﬂexible. We could design a language in which every loop had to be a while loop for example, but there are some situations in which it would be more “natural” to write code with a for loop. By providing several options, programmers have the choice of which type of loop to write.
+
+ - Problem Solving With Loops:
+
+ Loops can be applied to any problem that requires repetition of some sort or to simplify repeated code. When designing loops, it is important to identify the three components by asking the questions: 
+
+ • Where does the loop start? What variables or other state may need to be initialized or setup prior to the beginning of the loop? 
+ • What code needs to be repeated? How can it be generalized to depend on loop control variables? This helps you to identify and write the loop body. 
+ • When should the loop end? How many times do we want it to execute? This helps you to identify the continuation and/or termination condition. 
+ • How do we make progress toward the termination condition? What variable(s) need to be incremented and how?
+
+Page 141
+
+
+
+
+
+
 
 // Data structures review //
 
