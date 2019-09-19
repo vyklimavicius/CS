@@ -2646,6 +2646,35 @@ continue to execute or terminate.
 
  Expressions: in a programming language is a combination of one or more constants, variables, operators, and functions that the programming language interprets (according to its particular rules of precedence and of association) and computes to produce ("to return", in a stateful environment) another value. This process, as for mathematical expressions, is called evaluation.
 
+ You can also deﬁne functions that may not have any inputs or may not have any output. Some languages use the keyword void to indicate no return value and such functions are known as “void functions.” When a function doesn’t have any input values, its parameter list is usually empty
+
+ **Calling Functions:
+ When a function has been deﬁned and is in scope, you can invoke or “call” the function by coding the function name and providing the input parameters which can be either variables or literals. When provided as inputs, parameters are referred to as arguments to the function.
+
+ Invoking a function changes the usual ﬂow of control. When invoked, control ﬂow is transferred over to the function. When the function ﬁnishes executing the code in its body, control ﬂow returns to the point in the code that invoked it.
+
+ If a function returns a value it can either be captured in a variable using an assignment operator or by using it in an expression.
+
+ Ex:
+ 1 a ← 10 
+ 2 b ← 20 
+ 3 c ← sum(a,b)
+
+ **Organizing:
+ Functions provide code organization, but functions themselves should also be organized. We’ve seen this with standard libraries. Functions that provide basic input/output are all grouped together into one library. Functions that involve math functions are grouped together into a separate math library.
+
+ Some languages allow you to deﬁne and “import” individual libraries which organize similar functions together. Some languages do this by collecting functions into “utility” classes or modules. Only when you import these modules do the functions come into scope and can be used in your code. If you do not import these modules, then the functions are out of scope and cannot be used.
+
+ In some languages once a function is imported it is part of the global scope and can be “seen” by any part of the code. This can cause conﬂicts: if you import modules from two diﬀerent libraries each with diﬀerent functions that have the same name or signature, then the two function deﬁnitions may be in conﬂict or it may make your code ambiguous as to which function you intend to invoke. This is sometimes referred to as “polluting the namespace.”
+
+- How Functions Work:
+To understand how functions work in practice, it is necessary to understand how a program operates at a lower level. In particular, each program has a program stack (also called a call stack). A stack is a data structure that holds elements in a Last-In First-Out(LIFO).
+
+In the context of a program, a call stack is used to keep track of the ﬂow of control. Depending on the operating system, compiler and architecture, the details of how elements are stored in the program stack may vary. In general when a program begins, the operating system loads it into memory at the bottom of the call stack. Global variables (static data) are stored on top of the main program.
+
+The stack is depicted bottom-up with high memory at the bottom and low memory at the top, but this may diﬀer depending on the architecture.
+
+
 
 
 
