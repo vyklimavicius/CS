@@ -2625,7 +2625,26 @@ continue to execute or terminate.
  • When should the loop end? How many times do we want it to execute? This helps you to identify the continuation and/or termination condition. 
  • How do we make progress toward the termination condition? What variable(s) need to be incremented and how?
 
-Page 141
+ - Functions:
+
+ In mathematics, a function is a mapping from a set of inputs to a set of outputs such that each input is mapped to exactly one output. For example, the function:
+
+ f(x) = x2
+
+ maps numeric values to their squares. The input is a variable x. When we assign an actual value to x and evaluate the function, then the function has a value, its output. For example, setting x = 2 as input, the output would be 22 = 4. Mathematical functions can have multiple inputs, f(x,y) = x2 + y2 f(x,y,z) = 2x + 3y−4z However, a function will only ever have a single output value.
+ 
+ In programming languages, a function (sometimes called subroutine or procedure): can take multiple inputs and produce one output value.
+
+ For example, most languages provide a math library that you can use to evaluate the square root or sine of a value x. 
+
+ Finally, the main entry point to many programs is deﬁned by a main function.
+
+ More formally, a function is a sequence of instructions (code) that is packaged into a unit that can be reused. A function performs a speciﬁc task: given a number of inputs, it executes some sequence of operations (executes some code) and “returns” (outputs) a result. The output can be captured into a variable or used in an expression by whatever code invoked or “called” the function.
+
+ Note: 
+ In computer programming, a STATEMENT is a syntactic unit of an imperative programming language that expresses some action to be carried out.[1] A program written in such a language is formed by a sequence of one or more statements. A statement may have internal components (e.g., EXPRESSIONS).
+
+ Expressions: in a programming language is a combination of one or more constants, variables, operators, and functions that the programming language interprets (according to its particular rules of precedence and of association) and computes to produce ("to return", in a stateful environment) another value. This process, as for mathematical expressions, is called evaluation.
 
 
 
