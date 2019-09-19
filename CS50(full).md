@@ -332,6 +332,13 @@ Entire directories is rm -r <directory>, you combine rm -r with -rf like rm -rf 
 
                                    ** Data types - Variables **
 
+
+ - In computer science, primitive data type is either of the following:
+
+ a basic type is a data type provided by a programming language as a basic building block. Most languages allow more complicated composite types to be recursively constructed starting from basic types.
+
+ a built-in type is a data type for which the programming language provides built-in support.
+
  Modern programming languages doesnt use that anymore, if you work with an integer or string, char does not
  need to be specified. In older languages like C you need to specify the type of data variable you are going
  to use.
@@ -2135,6 +2142,8 @@ letters is not the same variable as one that uses uppercase letters.
 
   - In binary, numbers are represented in the same way, but in base-2 in which we only have 0 and 1 as symbols.
 
+  How to represent binary numbers: 0b10 == 2
+
  In many programming languages, a prefix of 0b is used to denote a number represented in binary.
 
    Representing negative numbers is a bit more com- plicated and is usually done using a scheme called two’s complement.
@@ -2673,6 +2682,68 @@ To understand how functions work in practice, it is necessary to understand how 
 In the context of a program, a call stack is used to keep track of the ﬂow of control. Depending on the operating system, compiler and architecture, the details of how elements are stored in the program stack may vary. In general when a program begins, the operating system loads it into memory at the bottom of the call stack. Global variables (static data) are stored on top of the main program.
 
 The stack is depicted bottom-up with high memory at the bottom and low memory at the top, but this may diﬀer depending on the architecture.
+
+**Call By Value:
+When a function is invoked, arguments are passed to it. When you invoke a function you can pass it variables as arguments. However, the variables themselves are not passed to the function, but instead the values stored in the variables at the time that you call the function are passed to the function. This mechanism is known as call by value and the variable values are passed by value to the function.
+
+Recall that the arguments passed to a function are placed in a new stack frame for that function. Thus, in reality copies of the values of the variables are passed to the function. Any changes to the parameters inside the function have no eﬀect on the original variables that were “passed” to the function when it was invoked.
+
+Ex:(C)
+1 int sum(int a, int b) { 
+2 int x = a + b; 
+3 a = 10; 
+4 return x; 
+5 }
+6 
+7 ...
+8 
+9 int n = 5; 
+10 int m = 15; 
+11 int k = sum(n, m);
+
+(a) Upon invocation of the sum() function, a new stack frame is created which holds the parameters and local variable. The parameter variables a and b are distinct from the original argument variables n and m .
+(b) The change to the variable a in the sum() function changes the parameter variable, but the original variable n is unaﬀected.
+(c) When the sum() function ﬁnishes execution, its stack frame is removed and the variables a , b , and x are no longer valid. The return value 20 is stored in another return value location.
+(d) The returned value is stored in the variable k and the variable n retains its original value.
+
+Ex2:(JS)
+
+let a = 12;
+
+function sum(a,y){
+    a = 10;
+    return a + y;
+};
+
+console.log(sum(a,10));
+setTimeout(() => {console.log(a)},3000);
+
+stdout => 20
+          12
+
+Passing variables by value means that copies of the values stored in the variables are provided to the function. Changes to parameter variables do not aﬀect the original variables.
+
+**Call By Reference:
+Some languages allow you to pass a parameter to a function by providing its memory address instead of the value stored in it. Since the memory address is being provided to the function, the function is able to access the original variable and manipulate the contents stored at that memory address. In particular, the function is now able to make changes to the original variable. This mechanism is known as call by reference and the variables are passed by reference.
+
+Ex:(C)
+1 int sum(int *a, int b) { 
+2 int x = *a + b; 
+3 *a = 10; 
+4 return x; 
+5 }
+6 
+7 ...
+8 
+9 int n = 5; 
+10 int m = 15; 
+11 int k = sum(&n, m);
+
+Whether or not a variable is passed by value or by reference depends on the language, type of variable, and the syntax used.
+
+Page 176
+
+
 
 
 
