@@ -436,6 +436,29 @@ Entire directories is rm -r <directory>, you combine rm -r with -rf like rm -rf 
 
  The usual context of wildcard characters is in globbing similar names in a list of files, whereas regexes are usually employed in applications that pattern-match text strings in general. For example, the regex ^[ \t]+|[ \t]+$ matches excess whitespace at the beginning or end of a line. An advanced regular expression that matches any numeral is [+-]?(\d+(\.\d+)?|\.\d+)([eE][+-]?\d+)?.
 
+ A regular expression, often called a pattern, is an expression used to specify a set of strings required for a particular purpose. A simple way to specify a finite set of strings is to list its elements or members. However, there are often more concise ways to specify the desired set of strings. For example, the set containing the three strings "Handel", "Händel", and "Haendel" can be specified by the pattern H(ä|ae?)ndel; we say that this pattern matches each of the three strings. In most formalisms, if there exists at least one regular expression that matches a particular set then there exists an infinite number of other regular expressions that also match it—the specification is not unique. Most formalisms provide the following operations to construct regular expressions.
+
+ Boolean "or"
+ A vertical bar separates alternatives. For example, gray|grey can match "gray" or "grey".
+
+ Grouping
+ Parentheses are used to define the scope and precedence of the operators (among other uses). For example, gray|grey and gr(a|e)y are equivalent patterns which both describe the set of "gray" or "grey".
+
+ Quantification
+ A quantifier after a token (such as a character) or group specifies how often that a preceding element is allowed to occur. The most common quantifiers are the question mark ?, the asterisk * (derived from the Kleene star), and the plus sign + (Kleene plus).
+ ?	The question mark indicates zero or one occurrences of the preceding element. For example, colou?r matches both "color" and "colour".
+ (*) The asterisk indicates zero or more occurrences of the preceding element. For example, ab*c matches "ac", "abc", "abbc", "abbbc", and so on.
+ (+)	The plus sign indicates one or more occurrences of the preceding element. For example, ab+c matches "abc", "abbc", "abbbc", and so on, but not "ac".
+ {n}[17]	The preceding item is matched exactly n times.
+ {min,}[17]	The preceding item is matched min or more times.
+ {min,max}[17]	The preceding item is matched at least min times, but not more than max times.
+ Wildcard
+ The wildcard . matches any character. For example, a.b matches any string that contains an "a", then any other character and then a "b", a.*b matches any string that contains an "a" and a "b" at some later point.
+
+ These constructions can be combined to form arbitrarily complex expressions, much like one can construct arithmetical expressions from numbers and the operations +, −, ×, and ÷. For example, H(ae?|ä)ndel and H(a|ae|ä)ndel are both valid patterns which match the same strings as the earlier example, H(ä|ae?)ndel.
+
+ The precise syntax for regular expressions varies among tools and with context; more detail is given in the Syntax section.
+
  //=================OPERATORS================================================
 
  1. arithmetic operators :
