@@ -2741,7 +2741,178 @@ Ex:(C)
 
 Whether or not a variable is passed by value or by reference depends on the language, type of variable, and the syntax used.
 
-Page 176
+**Functions as Entities:
+
+In programming languages, any entity(In this case functions) that can be stored in a variable or passed as an argument to a function or returned as a value from a function is referred to as a “ﬁrst-class citizen. Functional Programming is a programming language paradigm in which functions themselves are ﬁrst-class citizens. That is, functions can be assigned to variables, functions can be passed to other functions as arguments, and functions can even return functions as a result. 
+
+Passing a function to another function as an argument gives you the ability to provide a callback. A callback is simply a function that gets passed to another function as an argument. The idea is that the function that receives the callback will execute or “call back” the passed function at some point.
+
+A related issue is anonymous functions (also known as lambda expressions). Some languages allow you to deﬁne a function “inline” without an identiﬁer so that it can be passed to another function. Since the function has no name and cannot be invoked by other sections of the code (other than the function we passed it to), it is known as an anonymous function.
+
+**Function Overloading:
+Some languages do not allow you to deﬁne more than one function with the same name in the same scope. This is to prevent ambiguity in the code. When you write code to invoke a function and there are several functions with that name, which one are you actually calling?
+Some languages do allow you to deﬁne multiple functions with the same name as long as they diﬀer in either the number (also called arity) or type of parameters. Arity: In logic, mathematics, and computer science, the arity /ˈærɪti/ ( listen) of a function or operation is the number of arguments or operands that the function takes. The arity of a relation (or predicate) is the dimension of the domain in the corresponding Cartesian product.
+
+For example, you could deﬁne two absolute value, |x| functions with the same name, but one of them takes a ﬂoating point number while the other takes an integer as its parameter.
+
+This is known as function overloading because you are “overloading” the code by deﬁning multiple functions with the same name. The ambiguity problem is solved by requiring that each function with the same name diﬀers in their parameters.
+
+Depending on the type and number of arguments you pass to a function, the compiler or interpreter is able to determine which version you intend to call and is able to make the right function call. This process is known as STATIC DISPATCH(In computing, static dispatch is a form of polymorphism fully resolved during compile time. It is a form of method dispatch, which describes how a language or environment will select which implementation of a method or function to use.)
+
+***Note:
+Polymorphism => Is the provision of a single interface to entities of different types[1] or the use of a single symbol to represent multiple different types.
+
+In a language without function overloading, we would be forced to use diﬀerent names for functions that perform the same operation but on diﬀerent types.
+
+**Variable Argument Functions:
+Many languages allow you to deﬁne special functions that take a variable number of parameters. Often they are referred to as “vararg” (short for variable argument) functions. The syntax for doing so varies as does how you can write a function to operate on a variable number of arguments (usually through some array or collection data structure).
+
+It is import to note, a vararg function is not an example of function overloading. There is still only one function deﬁned, it just takes a variable number of arguments.
+
+**Optional Parameters & Default Values:
+Suppose that you deﬁne a function which has, say, three parameters. Now suppose you invoke the function but only provide it 2 of the 3 arguments that it expects. Some languages would not allow this and it would be considered a syntax or runtime error. Yet other languages may have very complex rules about what happens when an argument is omitted. Some languages allow you to omit some arguments when calling functions as a feature of the language. That is, the parameters to a function are optional.
+
+When a language allows parameters to be optional, it usually also allows you to deﬁne default values to the parameters if the calling function does not provide them. If a user calls the function without specifying a parameter, it takes on the default value. Alternatively, the default could be a non-value like “null” or “undeﬁned.” Inside the function you could implement logic that determined whether or not a parameter was passed to the function and alter the behavior of the function accordingly.
+
+- Error Handling:
+Modern coding tools and techniques can also help to improve the robustness of code. For example, debuggers are tools that help a developer debug (that is, ﬁnd and ﬁx the cause of an error) a program. Debuggers allow you to simulate the execution of a program statement-by-statement and view the current state of the program such as variable values. You can “step through” the execution line by line to ﬁnd where an error occurs in order to localize and identify a bug.
+
+Other tools allow you to perform static analysis on source code to search for potential problems. That is, problems that are not syntax errors and are not necessarily bugs that are causing problems, but instead are anti-patterns or code smells. 
+
+Static analysis tools automatically examine the code base for potential issues like these. For example, a lint (or linter) is a tool that can examine source code suspicious or non-portable code or code that does not comply with generally accepted standards or ways of doing things.
+
+In general, errors are potential conditions or situations that can reasonably be anticipated by a developer. For example, if we write code to open and process a ﬁle, there are several things that could go wrong. The ﬁle may not exist, or we may not have permission on the system to read it, or the formatting in the ﬁle may be corrupted or not as expected. Still yet, everything could be ﬁne with the ﬁle, but it may contain erroneous or invalid values.
+
+**Error Handling Strategies:
+We’ll look at two general methods here: defensive programming and exceptions.
+
+1.Defensive Programming: Is a “look before you leap” strategy. Suppose we have a potentially “dangerous” section of code; that is, a line or block of code whose execution could encounter or result in an error condition. Before we execute the code, we perform a check to see if the error condition is present (usually using a conditional statement). If the error condition does not hold, then we proceed with the code as normal. However, if the error condition does hold, instead of executing the code, we execute alternative code that handles the error. Suppose we are about to divide by a number. To prevent a division by zero error, we can check if our denominator is zero or not. If it is, then we raise or handle the error instead of performing the division. What should be done in such a case? Which is the right way to handle this error? It really depends on your design requirements really. This raises the question, though: “who” is responsible for making these decisions? Suppose we’re designing a function for a library that is not just for our project but others as well (as is the case with the standard library functions). Further, the function we’re designing could have multiple diﬀerent error conditions that it checks for. In this scenario there are two entities that could handle the errors: the function itself and the code that invokes the function. 
+One common pattern to communicate errors to a calling function is to use the return type as an error code. Usually this is an integer type. By convention 0 is used to indicate “no error” and various other non-zero values are used to indicate various types of errors. Depending on the system and standard used, error codes may have a predeﬁned value or may be speciﬁc to an application or library.
+
+One problem with using the return type to indicate errors is that functions are no longer able to use the return type to return an actual computed value. If a language supports pass by reference, then this is not generally a problem. However, even with such languages there are situations where the return type must be used to return a value. In such cases, the function can still communicate a general error message by returning some ﬂag value such as null.
+
+Defensive programming has its limitations. Let’s return to the example of processing a ﬁle. To check for all four of the error conditions we identiﬁed, we would need a series of checks similar to the following:
+
+Ex:
+
+1 if ﬁle does not exists then 
+2 return an error code 
+3 end 
+4 if we do not have permissions then 
+5 return an error code 
+6 end 
+7 if the ﬁle is corrupted then 
+8 return an error code 
+9 end 
+10 if the ﬁle contains invalid values then 
+11 return an error code 
+12 end 
+13 process ﬁle data
+
+A problem arises when an error condition is checked and does not hold. Then, later in the execution, circumstances change and the error condition does hold. However, since it was already checked for, the program remains under the assumption that the error condition does not hold. For example, suppose that another process or program deletes the ﬁle that we wish to process after its existence has been checked but before we start processing it. Because of the sequential nature of our program, this type of error checking is susceptible to these issues.
+
+2.Exceptions:
+
+An exception is an event or occurrence of an anomalous, erroneous or “exceptional” condition that requires special handling. Exceptions interrupt the normal ﬂow of control in a program by handing the ﬂow of control over to exception handlers.
+Languages usually support exception handling using a try-catch control structure such as the following.
+
+try { //potentially dangerous code here
+
+} catch(Exception e) { //exception handling code here }
+
+The try is used to encapsulate potentially dangerous code, or simply code that would fail if an error condition occurs. If an error occurs at some point within the try block, control ﬂow is immediately transferred to the catch block. The catch block is where you specify how to handle the exception. If the code in the try block does not result in an exception, then control ﬂow will skip over the catch statement and resume normally after.
+It is important to understand how exceptions interrupt the normal control ﬂow. For example, consider the following pseudocode.
+
+try { statement1; statement2; statement3; } catch(Exception e) { //exception handling code here }
+
+Suppose statement1 executes with no error but that when statement2 executes, it results an exception. Control ﬂow is then transferred to the catch block, skipping statement3 entirely. In general, there may not be a mechanism for your catch block to recover and execute statement3 . Therefore, it may be necessary to make your try-catch blocks ﬁne-grained, perhaps having only a single statement within the try statement. 
+
+Some languages only support a generic Exception and the type of error may need to be communicated through other means such as a string error message. Still other languages may support many diﬀerent types of exceptions and you may be able to provide multiple catch statements to handle each one diﬀerently. In such languages, the order in which you place your catch statements may be important. Similar to an if-else-if statement, the ﬁrst one that matches the exception will be the one that executes. Thus, it is best practice to order your catch blocks from the most speciﬁc to the most general.
+Some languages also support a third finally control statement as in the following example.
+
+Ex:
+try { //potentially dangerous code here 
+} catch(Exception e) { 
+  //exception handling code here 
+} finally { 
+  //unconditionally executed code here 
+}
+
+In addition to handling exceptions, a language may allow you to “throw” your own exceptions by using the keyword throw . In this way you can also practice defensive programming. You could write a conditional statement to check for an error condition and then throw an appropriate exception.
+
+- Arrays, Collections & Dynamic Memory:
+Rarely do we ever deal with a single piece of data in a program. Instead, most data is made up of a collection of similar elements.
+
+1.Arrays are a way to collect similar pieces of data together in an ordered collection. The pieces of data stored in an array are referred to as elements and are stored in an ordered manner. That is, there is a “ﬁrst” element, “second” element, etc. and a “last” element. Though the elements are ordered, they are not necessarily sorted in any particular manner. Instead, the order is usually determined by the order in which you place elements into the array
+
+-Some languages only allow you to store the same types of elements in an array. For example, an integer array would only be able to store integers, an array of ﬂoating-point numbers would only be able to store ﬂoating-point numbers. 
+-Other languages allow you to create arrays that can hold mixed elements. A mixed array would be able to hold elements of any type, so it could hold integers, ﬂoating-point numbers, strings, objects, or even other arrays.
+-Some languages treat arrays as full-ﬂedged object types that not only hold elements, but have methods that can be called to manipulate or transform the contents of the array. 
+-Other languages treat arrays as a primitive type, simply using arrays as storage data structures.
+
+Languages can vary greatly in how they implement and represent arrays of elements, but many have the same basic usage patterns allowing you to create arrays and manipulate their contents.
+
+**Basic usage:
+
+Creating arrays:
+Though there can be great variation in how a language uses arrays, there are some commonalities. Languages may allow you to create static arrays or dynamically allocated arrays (see Section 7.2 below for a detailed discussion). Static arrays are generally created using the program stack space while dynamically allocated arrays are stored in the heap. In either case you generally declare an array by specifying its size. In statically typed languages, you must also declare the array’s type (integer, ﬂoating-point, etc.).
+
+Indexing Arrays:
+Once an array has been created you can use it by assigning values to it or by retrieving values from it. Because there is more than one element, you must specify which element you are assigning or retrieving. This is generally done through indexing. An index is an integer that speciﬁes an element in the array. The index is used in conjunction with (usually) square brackets and the array’s identiﬁer. For example, if the array’s identiﬁer is arr and the index is an integer value stored in the variable i , we would refer to the i-th element using the syntax arr[i].
+
+For most programming languages, indices start at zero. This is known as zero-indexing.1 Thus, the ﬁrst element is at arr[0] , the second at arr[1] etc. When an array is stored in memory, each element is usually stored one after the other in one contiguous space in memory. Further, each element is of a speciﬁc type which is represented using a ﬁxed number of bytes in memory. Thus the index actually acts as an oﬀset in memory from the beginning of the array. For example, if we have an array of integers which each take 4 bytes each, then the 5th element would be stored at index 4, which is an an oﬀset equal to 4×4 = 16 bytes away from the beginning of the array. The ﬁrst element, being at index 0 is 4×0 = 0 bytes from the beginning of the array (that is, the ﬁrst element is at the beginning of the array).
+
+Iteration:
+Since we can simply index elements in an array, it is natural to iterate over elements in an array using a for loop. We can create a for loop using an index variable i which starts at 0, and increments by one on each iteration, accessing the i-th element using the syntax described above, arr[i].
+
+Ex:
+1 n ← size of array arr 
+2 for (i ← 0;i < (n−1);i ← (i + 1)) do 
+3 process element arr[i] 
+4 end
+
+Some languages build the size of the array into a property that can be accessed. Java, for example, has a arr.length property. Other languages provide functions that you can use to determine their size. Still other languages (such as C), place the burden of “bookkeeping” the size of an array on you, the programmer. Whenever you pass an array to a function you need to also pass a size parameter that informs the function of how many elements are in the array. Yet other functions may also require you to pass the size of each element in the array.
+
+Some languages also support a basic foreach loop. A foreach loop is syntactic sugar that allows you to iterate over the elements in an array (usually in order) without the need for boilerplate code that creates and increments an index variable.
+
+Ex:
+1 foreach element a in arr do 
+2 process element a 
+3 end
+
+The actual syntax may vary if a language supports such a loop.
+
+**Using Arrays in Functions:
+Most programming languages allow you to use arrays as both function parameters and as return types. You can pass arrays to functions and functions can be deﬁned that return arrays.
+Typically, when arrays are passed to functions, they are passed by reference so as to avoid making an entirely new copy of the array.
+
+As a consequence, if the function makes changes to the array elements, those changes may be realized in the calling function. Sometimes you may want this behavior. However, sometimes you may not want the function to make changes to the passed array. Some languages allow you to use various keywords to prevent any changes to the passed array.
+
+If a function is designed to return an array, care must be taken to ensure that the correct type of array is returned. Recall that static arrays are allocated on the call stack. It would be inappropriate to return static arrays from a function as the array is part of the stack frame that is destroyed when the function returns control back to the calling function (we discuss this in detail below). Instead, if a function returns an array, it should be an array that has been dynamically allocated (on the heap).
+
+- Static & Dynamic Memory:
+Recall that arrays can be declared as static arrays, meaning that when you declare them, they are allocated and stored on the program’s call stack within the stack frame in which they are declared.
+
+For example, if a function foo() creates a static array of 5 integers, each requiring 4 bytes, then 20 contiguous bytes are allocated on the stack frame for foo() to store the static array.This can cause several potential problems. First, the typical stack space allocated for a program is relatively small. It can be as large as a couple of Megabytes (MBs) or on some older systems or those with limited resources, even on the order of a few hundred Kilobytes (KBs). When dealing with data of any substantial size, you could quickly run out of stack space, resulting in a stack overﬂow.
+
+Another problem arises if we want to return a static array from a function. Recall that when a function returns control to the calling function, its stack frame is popped oﬀ the top and goes out-of-scope (see Section 5.2). Since the array is part of the stack frame of the function, it too goes out of scope. Depending on how the system works, the contents of the frame may be completely changed in the “bookkeeping” process of returning from the function. Even if the contents remain unchanged when the function returns, they will almost certainly be overwritten when another function call is made and a new stack frame overwrites the old one. For these reasons, static arrays are of very limited use. They must be kept small and cannot be returned from a function.
+
+Page 196
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
