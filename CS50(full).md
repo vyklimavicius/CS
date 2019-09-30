@@ -3130,6 +3130,27 @@ After deﬁning and creating an object, you can usually use it like any regular 
 
 A language also provides ways to access the member variables or methods that are visible to the outside world. Languages usually allow you to do this through the “dot operator” or the “arrow operator.” Suppose we have an instance of a student object stored in a variable s . To access the ﬁrst name of this instance, we may be able to use either s.firstName or s->firstName . We can access and invoke visible methods likewise.
 
+The dot/arrow operators are how code outside the object interacts with the object. Outside code is able to do this because it holds a reference, s to the object. However, inside the object, we may not have a reference (the variable s was ostensibly declared and used outside the object and so is not in scope inside the object). However, we still have need to reference member variables or methods from inside the object. Many languages use open recursion , a mechanism by which we can write code so that an instance is able to refer to itself. Languages use keywords such as this or self or something similar. The keyword is essentially a self-reference to the object itself so that you can refer to “this” object from within the object.
+
+***Note:
+Recursion is the process in which a function is called by itself, either directly or indirectly. Recursion allows you to write some very elegant code. But when using recursion you need to be aware of the pitfals.
+-0-
+Loosely defined, recursion is the process of taking a big problem and sub-dividing it into multiple, smaller instances of the same problem.
+
+**Design Principles & Best Practices:
+
+Using objects in your code follows more of a bottom-up design rather than a top-down design approach. In a top-down design, a program is designed by breaking a program or problem down into smaller and smaller components. Bottom-up design approaches a problem diﬀerently. First, real-world entities involved with the problem are modeled by deﬁning objects. Then objects are used as building blocks that can be combined and made to interact to solve a problem.
+
+ Object design is usually a straightforward process. Typically an object is modeling a real-world entity, so it is simple enough to decompose the entity into its constituent components.
+
+We do this until the component can either be modeled by a built-in type such as a string or number or by an existing object. In general, you want to keep things as simple as possible. Any time you need to associate pieces of data together into one logical unit, it is appropriate to encapsulate them into an object.
+
+A good design principle is to utilize composition as much as possible. If you have multiple pieces of data that deﬁne a logical entity or unit, it is good design to create another object. For example, suppose a student object needs to model a mailing address; think about what an address is: it is a street address, city, state, zip, etc. Rather than having these as member ﬁelds to your object, it is probably more appropriate to deﬁne an “address” object, especially if such an object would be useful elsewhere in a program. 
+
+- Recursion:
+
+
+
 
 
 
