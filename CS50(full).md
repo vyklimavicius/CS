@@ -3042,6 +3042,42 @@ would refer to a file two levels up in the subdirectory system.
 
 When dealing with ﬁles there are many potential error conditions that may be anticipated and may need to be dealt with. Some types of errors that can occur include the following:
 
+• Permission errors – Your program may not have the proper permissions to read or write to a particular directory or ﬁle. For example, user-level processes typically do not have permissions to read system-level ﬁles (such as password ﬁles) nor can they write to them lest they corrupt critical system data. 
+
+• File Not Found errors – Your program may attempt to open a ﬁle that does not exist. Sometimes, particularly when writing, the ﬁle will be created if it does not exist. However, for reading, this may be a serious error. 
+
+• I/O Errors – We may be able to successfully ﬁnd and open a ﬁle, but while processing it something might go wrong with the ﬁle system that results in a general input/output error. 
+
+• Formatting errors – As previously mentioned, the format of a ﬁle is highly dependent on the application that created it (though there are universal data formats such as XML or JavaScript Object Notation (JSON)). If the format is not as expected the ﬁle may be corrupted and the program may not be able to successfully read data from it.
+
+**Buﬀered and Unbuﬀered:
+
+When processing ﬁles the input/output may be either buﬀered or unbuﬀered. A buﬀered input or output “stream” is one in which data that is read/written is actually stored in memory in a “buﬀer” until such a time as the buﬀer is “ﬂushed” and the accumulated data is passed to/from the actual ﬁle.
+
+For example, in a buﬀered output ﬁle, our program could write several kilobytes of data to the output ﬁle, but it might not actually be written to the ﬁle right away. Instead, those kilobytes of data are stored in memory until the buﬀer ﬁlls up or some other event takes place to cause the buﬀer to be ﬂushed. At that point, the data stored in the buﬀer is emptied and written to the ﬁle.
+
+Buﬀered input/output is used because I/O operations are expensive in terms of system resources and can slow the system down. Because of this, it is better to keep I/O operations as infrequent as possible. Buﬀers help to reduce the number of I/O operations performed by a program by making them less frequent.
+
+There are some instances in which we want unbuﬀered I/O. When error messages are written to the standard error output for example, we would prefer to know about errors as soon as possible rather than waiting for error messages to accumulate in a buﬀer. Using an unbuﬀered output means that data is written to the standard error (which is a ﬁle) immediately. However, because errors are (hopefully) infrequent and (likely) fatal, this is not a performance issue.
+
+**Binary vs Text Files:
+
+As previously mentioned, ﬁles can be stored as pure binary data or as plaintext (ASCII). 
+
+Depending on our application and the nature of the data being written to ﬁles, the choice of which to use may be clear. If we want the data in our ﬁles to be human-readable, then we need to store them as plaintext. However, in general, we should prefer storing data in a binary format. The reason for this is that binary generally requires less space and is more eﬃcient to process.
+
+Consider as an example, storing a collection of integers in a ﬁle. Each integer requires 4 bytes when represented in binary. However, when represented as a string, it requires as many bytes as there are digits in the number. 
+
+Further, if a lot of numbers are stored, each number (as a string) would need to be delimited by yet another character. With a binary representation, no delimiter would be necessary as we would know that each 4 byte block represents a single number.
+
+There are additional performance issues when reading/writing the data and converting binary numbers to their string representations. With binary data no such parsing is necessary. As long as the data does not need to be human-readable, binary formats should be preferred.
+
+- Encapsulation & Objects:
+
+
+
+
+
 
 
 
