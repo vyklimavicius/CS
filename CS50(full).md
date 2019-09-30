@@ -3074,6 +3074,70 @@ There are additional performance issues when reading/writing the data and conver
 
 - Encapsulation & Objects:
 
+One reason we prefer to write programs in high-level programming languages is that we can use syntax that is closer to plain English.
+
+However, from what we’ve seen so far, when writing programs we are still forced to utilize the primitive variable types built-in to the language we’re using, which is still quite limiting.
+
+As a motivating example, suppose we were to write a program that involved organizing the enrollment of students into courses. To model a particular student, we would need a collection of variables, say a ﬁrst name, last name, GPA, and a unique identiﬁcation number (likely a lot more, but let’s keep it simple). Each of these pieces of data could be modeled by strings, a ﬂoating-point number and perhaps an integer.1 Each of these pieces of data are stored in separate, unrelated variables even though they represent a single entity.
+
+Even worse, suppose that we needed to keep track of a collection of students. Each piece of data would need to be stored in a separate array. If we wanted to rearrange the data (say, sort it), we would need to do a lot of manual bookkeeping to make sure that the separate pieces of data that represented a single entity were all aligned at the same index in each of the arrays.
+
+The solution is to encapsulate the pieces of data into one logical entity, sometimes referred to as an object. More formally, encapsulation is a mechanism by which pieces of data can be grouped together along with the functions that operate on that data.
+
+Contrast this with an array which is also a collection of data. However, an array usually contains pieces of similar data (all elements are integers or all elements are ﬂoating point numbers) while an object may collect pieces of dissimilar data that make up a larger entity.
+
+Ex:
+
+Consider the student data:(Each row represents a record while each column represents a collection of data from each record.)
+
+First Name Last Name ID GPA 
+Tom          Baker   74 3.75 
+Christopher Eccleston 5 3.5 
+David        Tennant 10 4.0 
+Matt          Smith  29 3.2 
+Peter        Capaldi 13 2.9
+
+To represent this data in code without objects we would need at least 4 separate arrays, more if we wanted to model more data for a student. Moreover, data in separate arrays or collections have no real logical relationship to each other. To represent this data in code without objects we would need at least 4 separate arrays, more if we wanted to model more data for a student. Moreover, data in separate arrays or collections have no real logical relationship to each other. 
+
+**Objects:
+
+Though languages diﬀer in how they support objects, they all have some commonalities. A language needs to provide ways to deﬁne objects, create instances of objects, and to use them in code. Most object oriented programming languages such as C++ and Java are class-based languages. Meaning that they allow you to deﬁne objects by declaring and deﬁning a “class.”
+
+A class is essentially a blueprint for what the object is and how it is deﬁned. Generally, a class declaration allows you to specify member variables and member methods which are part of the class.
+
+Further, full encapsulation is achieved by using visibility keywords such as public or private to either allow or restrict access to variables and methods from code outside the object. Non-object-oriented languages may not support full encapsulation. Instead they may allow you to deﬁne structures which support the grouping of data, but make it diﬃcult or impossible to achieve the other two aspects of encapsulation (the grouping of methods that act on that data and the protection of data).
+
+In either case, a language allows you to deﬁne the member variables and to name the class or structure so that instances can be referred to by that type. Built-in types such as numbers or strings already have a type name deﬁned by the language. However, an object is a user-deﬁned type that is not built-in to the language. Once deﬁned, however, the class or structure can be referred to just like any built-in variable type.
+
+It is not unusual to create objects that are made of other objects. For example, a student object may be deﬁned by using two strings for its ﬁrst and last name. In the language, a string may also be an object. As a more complex example, suppose that we wanted an additional member variable to model a student’s date of birth. A date may itself be an object as it consists of several pieces of information (a year, month, and date at least).
+
+ When an object “owns” an instance of another object it is referred to as composition as the object is composed of other objects. 
+ Further, an object may consist of a collection of other objects. This is a form of composition known as aggregation (multiple objects have been aggregated by the object).
+
+**Creating Objects:
+Once a blueprint for an object (or structure) has been declared and deﬁned, we need a way to create instances of the object. The concept of an “object” is general and abstract. 
+
+Only once we have created an entity that exists in memory do we have an actual instance of the class. Creating instances of an object is usually referred to as instantiation. Languages may be able to automatically create instances of your object with default values. After all, your object is likely composed of built-in types.
+
+ The language/compiler/interpreter “knows” how to deal with these built-in types, so it can extend that knowledge to create instances of your object which are essentially just collections of types that it already knows how to deal with.
+
+Object-oriented languages usually provide a special method for you to be able to specify the details of how to create an instance. These are called constructor methods. Sometimes you can deﬁne multiple constructors methods that take diﬀerent number(s) of arguments and/or have diﬀerent behavior. Constructor methods typically have special syntax or have the same name as the class.
+
+In other languages that do not fully support object-oriented programming, you must deﬁne utility functions that can be used to create instances of your object. Sometimes these are referred to as factory functions as they are responsible for “manufacturing" instances of your object.
+
+**Using Objects:
+After deﬁning and creating an object, you can usually use it like any regular variable. The variable type can usually be passed and returned from functions, assigned to other variables, etc.
+
+A language also provides ways to access the member variables or methods that are visible to the outside world. Languages usually allow you to do this through the “dot operator” or the “arrow operator.” Suppose we have an instance of a student object stored in a variable s . To access the ﬁrst name of this instance, we may be able to use either s.firstName or s->firstName . We can access and invoke visible methods likewise.
+
+
+
+
+
+
+
+
+
 
 
 
