@@ -3149,6 +3149,128 @@ A good design principle is to utilize composition as much as possible. If you ha
 
 - Recursion:
 
+Suppose we wanted to write a simple program that performed a countdown, printing 10, 9, 8, ..., 2, 1 and when it reached zero it printed a “Happy New Year” message. Likely our ﬁrst instinct would be to write a very simple for loop using an increment variable. But suppose we lived in a world without the usual loop control structures that we are now familiar with. How might we write such a program?
+
+After thinking about it for a while, we might think: well, we don’t have loops, but we still have functions. In particular what if we had a function that took the “current” value of our counter variable and decremented it, passing it to another function, which did the same thing. For example, we could pass 10 to such a function, which would then subtract 1, passing 9 to another function and so on. A check could be made to see if the value was zero, in which case we print our special message and no longer call any more functions.
+
+In fact, we would not need to deﬁne 10 diﬀerent functions to do so. Instead, we could deﬁne one function that called itself:
+
+Input :An integer n ≥ 0 
+Output:A countdown of integers n,...0 
+1 if n = 0 then 
+2 output “Happy New Year!!!” 
+3 else 
+4 output n 
+5 CountDown(n−1) 
+6 end
+
+The function in this case is called CountDown(). In Line 5 the function calls itself on a decremented value. When a function calls itself, it is a recursive function. When a language allows functions to call themselves they support recursion. Each function call simply creates a new stack frame on the program stack. There is nothing particularly special about which functions call which other functions, so there is little diﬀerence when a function calls itself.
+
+ Each function call simply creates a new stack frame on the program stack. There is nothing particularly special about which functions call which other functions, so there is little diﬀerence when a function calls itself.
+
+Instead, control ﬂow is deﬁned by evaluating a series of functions, making recursion a fundamental technique. Recursion is extensively used in mathematics. Recurrence relations or recursive functions are common. The Fibonacci sequence is a common, if not overused example.
+
+It has a simple deﬁnition: the next value in the sequence is simply the sum of the two previous values. The sequence starts with the initial values of 1. The ﬁrst few terms in the sequence: 1,1,2,3,5,8,13,21,34,55,89,...
+
+The more formal mathematical deﬁnition can be stated as follows. 
+Fn = 1 if n = 0 
+     1 if n = 1 
+     Fn−1 + Fn−2 otherwise 
+     
+The Fibonacci sequence is the cliche example for recursion. We can deﬁne an algorithmic function to compute the n-th Fibonacci number as follows. 
+
+Input : An integer n ≥ 0 
+Output: The n-th Fibonacci number, Fn 
+1 if n ≤ 1 then 
+2 output 1 
+3 else 
+4 output Fibonacci(n−1) + Fibonacci(n−2) 
+5 end
+
+Though hackneyed, it does provide a good example for how recursive functions work. We’ll also utilize it as an example of why you should avoid recursion in practice. We use it to illustrate how the problems with recursion can be mitigated or avoided altogether.
+
+** Writing Recursive Functions:
+
+When writing a recursive function, there are several key elements that we need to take care of to ensure that it executes correctly. In particular, every recursive function requires at least one base case or base condition which serves as a terminating condition for the recursion. A base case is a condition which, instead of making a recursive call, processes and returns a value. 
+
+Without a base case, the recursion would continue unbounded: the function would call itself over and over again, creating new stack frame after stack frame until we run out of stack space. 
+
+If a program makes too many function calls and runs out of stack memory, it may lead to a stack overﬂow and the termination of the program. Even if we don’t have unbounded recursion, it is still possible to run out of stack space even with simple recursion.
+
+The other key element that we need is to ensure that every recursive call makes progress toward one of the terminating conditions. If no progress is made, then again we may have an unbounded recursion. In the Fibonacci example in Algorithm 11.2, the base case can be found in the ﬁrst if-statement: when n reaches 1 or less, no recursive calls are made. In the else-statement, we make two recursive calls, but both of them make progress toward this base case. The ﬁrst decrements n by 1 and the second by 2, eventually reaching n = 1.
+
+** Tail Recursion:
+
+Making many function calls can be costly in terms of stack space. One optimization that can be made is to use tail recursion. The last operation that a function executes is referred to as the tail operation. If a function invokes another function as its tail operation, its a tail call. For example, consider the following snippet of code(C):
+
+1 int foo(int x) { 
+2 ... 
+3 return bar(x-1) + 1; 
+4 }
+
+Here, foo() calls bar() but it is not the last operation before it returns. Instead, it invokes bar() , takes the result and adds one then returns to the calling function. Note that decrementing x is performed before the invocation of bar() . In contrast, consider the following modiﬁed code:
+
+1 int foo(int x) { 
+2 ... 
+3 return bar(x-1); 
+4 }
+
+Here, the invocation of bar() is the last operation performed by foo() . Thus, this is a tail call. Tail calls have the advantage that a language or compiler can generally optimize the function call with respect to the stack frame. Since the function foo() is essentially done with its computation, its stack frame is no longer needed. The system, therefore, can reuse the stack frame. Tail recursion is such an important optimization, some languages require it or “guarantee” it in other ways.
+
+** Avoiding Recursion:
+
+Recursion is not essential; some languages do not even support recursion. In fact, any recursive function can be rewritten to not use recursion. Usually, you can write an equivalent loop structure or use an in-memory stack data structure to replace the recursion. So why use it?
+
+Proponents would argue that recursion allows you to write simple code that more closely matches mathematical functions and expressions. Recursion is also a natural way to think about certain problem solving techniques such as divideand-conquer. It is also a natural way to code in functional programming languages.
+
+These arguments, however, are subjective. One person’s “cleaner” or “more understandable” code is another person’s spaghetti code hack. What is “natural” for one person may be “weird” and “odd” for another. However, there are many other arguments against recursion, many of which are objective reasons: that recursion is more expensive and can easily lead to ineﬃcient, exponential algorithms.
+
+In general, recursion requires lots of function calls which requires creating and removing lots of stack frames. This usually results in a lot of overhead and resources being used to perform the computation. Unless you are using a language in which recursion is optimized and made to be more eﬃcient (such as functional programming languages), this is a lot more expensive than using simple loops and iteration.
+
+Another reason to avoid recursion is that it can lead to a lot of extraneous re-computations. The cliched example of the Fibonacci recursion is a prime example of this.2 Consider the computation of Fibonacci(5). This results in two recursive calls, each of those calls results in 2 recursive calls and so on,
+
+In general, the computation of Fibonacci(n) will result in an exponential number of function calls. 
+
+That is more than the ﬁrst n−1 Fibonacci numbers combined! It should come as no surprise that the Fibonacci sequence grows exponentially and thus so would the number of operations with this recursive solution.
+
+To put this in perspective, consider computing F45 = 1,836,311,903 (n = 45), the maximum representable value for a 32-bit signed two’s complement integer. Executing a C implementation of this recursive algorithm took about 8 seconds(On a 2.7GHz Intel Core i7.) and required 3,672,623,805 function calls!
+
+What if we wanted to compute F100 = 573,147,844,013,817,084,101 (573 quintillion) it would result in 1,146,295,688,027,634,168,201 (1.146 sextillion) function calls. Using the same hardware, at 4.59×108 (459 million) function calls per second, it would take 2.497×1012 seconds to compute. That would be more than 79,191 years! Even if we performed these (useless) calculations on hardware that was 1 million times faster than my laptop, it would still take over 4 weeks!
+
+** Memoization:
+The ineﬃciency in the example above(Fibonacci) comes from the fact that we make the same function calls on the same values over and over. One way to avoid recomputing the same values is to store them into a table (or tableau if you prefer being fancy).
+
+Then, when you need to compute a value, you look at the table to see if it has already been computed. If it has, we reuse the value stored in the table, otherwise we compute it by making the appropriate recursive calls. Once computed, we place the value into the table so that it can be looked up on subsequent function calls. This approach is usually referred to as memoization.
+
+The “table” in this scenario is very general: it can be achieved using a number of diﬀerent data structures including simple arrays, or even maps (mapping input value(s) to output values). The table is essentially serving as a cache for the previously computed values. An illustration of how this might work:
+
+Input : An integer n ≥ 0, a global map M that maps n values to Fn 
+Output: The n-th Fibonacci number, Fn 
+1 if Fn is deﬁned in M then 
+2 output M(n) 
+3 else 
+4 a ← Fibonacci(n−1) 
+5 b ← Fibonacci(n−2) 
+6 Deﬁne M(n) = a + b 
+7 output (a + b) 
+8 end
+
+Page 242
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
