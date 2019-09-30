@@ -428,37 +428,6 @@ Entire directories is rm -r <directory>, you combine rm -r with -rf like rm -rf 
  because is a series of characters.
  strings usually include things such as words, sentences, paragraphs.
 
- A regular expression, regex or regexp (sometimes called a rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string searching algorithms for "find" or "find and replace" operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.
-
- The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities. Different syntaxes for writing regular expressions have existed since the 1980s, one being the POSIX standard and another, widely used, being the Perl syntax.
-  
- Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.
-
- The usual context of wildcard characters is in globbing similar names in a list of files, whereas regexes are usually employed in applications that pattern-match text strings in general. For example, the regex ^[ \t]+|[ \t]+$ matches excess whitespace at the beginning or end of a line. An advanced regular expression that matches any numeral is [+-]?(\d+(\.\d+)?|\.\d+)([eE][+-]?\d+)?.
-
- A regular expression, often called a pattern, is an expression used to specify a set of strings required for a particular purpose. A simple way to specify a finite set of strings is to list its elements or members. However, there are often more concise ways to specify the desired set of strings. For example, the set containing the three strings "Handel", "Händel", and "Haendel" can be specified by the pattern H(ä|ae?)ndel; we say that this pattern matches each of the three strings. In most formalisms, if there exists at least one regular expression that matches a particular set then there exists an infinite number of other regular expressions that also match it—the specification is not unique. Most formalisms provide the following operations to construct regular expressions.
-
- Boolean "or"
- A vertical bar separates alternatives. For example, gray|grey can match "gray" or "grey".
-
- Grouping
- Parentheses are used to define the scope and precedence of the operators (among other uses). For example, gray|grey and gr(a|e)y are equivalent patterns which both describe the set of "gray" or "grey".
-
- Quantification
- A quantifier after a token (such as a character) or group specifies how often that a preceding element is allowed to occur. The most common quantifiers are the question mark ?, the asterisk * (derived from the Kleene star), and the plus sign + (Kleene plus).
- ?	The question mark indicates zero or one occurrences of the preceding element. For example, colou?r matches both "color" and "colour".
- (*) The asterisk indicates zero or more occurrences of the preceding element. For example, ab*c matches "ac", "abc", "abbc", "abbbc", and so on.
- (+)	The plus sign indicates one or more occurrences of the preceding element. For example, ab+c matches "abc", "abbc", "abbbc", and so on, but not "ac".
- {n}[17]	The preceding item is matched exactly n times.
- {min,}[17]	The preceding item is matched min or more times.
- {min,max}[17]	The preceding item is matched at least min times, but not more than max times.
- Wildcard
- The wildcard . matches any character. For example, a.b matches any string that contains an "a", then any other character and then a "b", a.*b matches any string that contains an "a" and a "b" at some later point.
-
- These constructions can be combined to form arbitrarily complex expressions, much like one can construct arithmetical expressions from numbers and the operations +, −, ×, and ÷. For example, H(ae?|ä)ndel and H(a|ae|ä)ndel are both valid patterns which match the same strings as the earlier example, H(ä|ae?)ndel.
-
- The precise syntax for regular expressions varies among tools and with context; more detail is given in the Syntax section.
-
  //=================OPERATORS================================================
 
  1. arithmetic operators :
@@ -2928,7 +2897,150 @@ For example, if a function foo() creates a static array of 5 integers, each requ
 
 Another problem arises if we want to return a static array from a function. Recall that when a function returns control to the calling function, its stack frame is popped oﬀ the top and goes out-of-scope (see Section 5.2). Since the array is part of the stack frame of the function, it too goes out of scope. Depending on how the system works, the contents of the frame may be completely changed in the “bookkeeping” process of returning from the function. Even if the contents remain unchanged when the function returns, they will almost certainly be overwritten when another function call is made and a new stack frame overwrites the old one. For these reasons, static arrays are of very limited use. They must be kept small and cannot be returned from a function.
 
-Page 196
+- Memory management:
+
+If a program has poor memory management and fails to deallocate memory when it is no longer needed, the memory “leaks”: the available memory gradually runs out because it is not released back to the heap for reallocation. Programs which such poor memory management are said to have a memory leak. Sometimes this is a consequence of a dangling pointer: when a program dynamically allocates a chunk of memory but then due to carelessness, loses the reference to the memory chunk,making it impossible to free up.
+
+** Shallow vs. Deep Copies:
+
+In most languages, an array variable is actually a reference to the array in memory. We could create an array referred to by a variable A and then create another reference variable B and set it “equal” to A. However, this is simply a shallow copy. Both the reference variables refer to the same data in memory. Consequently, if we change the
+value of an element in one, the change is realized in both.
+
+Often, we want a completely different copy, referred to as a deep copy. With a deep copy, A and B would refer to different memory blocks. Changes to one would not affect the other.
+
+** Multidimensional Arrays:Aside from basic arrays, many languages have rich libraries of other dynamic collections.
+Dynamic collections are not the same thing as dynamically allocated arrays. Once an array is created, its size is fixed and cannot, in general, be changed. However, dynamic collections can grow (and shrink) as needed when you add or remove elements from them. A normal array is usually one dimensional. One can think an array as a single “row” in a table that contains a certain number of entries. Most programming languages allow you to define multidimensional arrays. For example, two dimensional arrays would model having multiple rows in a full table. You can also view two dimensional arrays as matrices in mathematics. A matrix is a rectangular array of numbers that have a certain number of rows and a certain number of columns.
+
+As an example, consider the following 2 × 3 matrix (it has 2 rows and 3 columns):
+
+[1 9 −8]
+[2.5 3 5]
+
+In mathematics, entries in a matrix are indexed via their row and column. For example, a i,j would refer to the element in the i-th row and j-th column. Referring to the row first and column second is referred to as row major ordering. If the number of rows and the number of columns are the same, the matrix is referred to as a square matrix.
+
+We can do something similar in most programming languages. First, languages may vary in how you can create multidimensional arrays, but you usually have to provide a size for each dimension when you create them. Once created, you can index them byproviding multiple indices. For example, with a two dimensional array, we could provide
+two indices each in their own square brackets arr[i][j] referring to the i-th row and j-th column. Multidimensional arrays usually use the same 0-indexing scheme as single dimensional arrays.
+
+** Other Collections:
+
+Aside from basic arrays, many languages have rich libraries of other dynamic collections. Dynamic collections are not the same thing as dynamically allocated arrays. Once an array is created, its size is fixed and cannot, in general, be changed. However, dynamic collections can grow (and shrink) as needed when you add or remove elements from them.
+
+Lists are ordered collections that are essentially (dynamic arrays). Lists are ordered and are usually zero-indexed just like arrays. Lists are generally objects and provide methods that can be used to add, remove, and retrieve elements from the list. If you add an element to a list, the list will automatically grow to accommodate it, so its size is not fixed when created. Two common implementations of lists are array-based lists and linked lists. Array-based lists indexarray-based list use an array to store elements. When the array fills up, the list allocates a new, larger array to hold more elements, copying the original contents over to the new array with a larger capacity. Linked lists hold elements in nodes that are linked together. Adding a new element simply involves creating a new node and linking it to the last element in the list.
+
+Some languages also define what are called sets. Sets allow you to store elements dynamically just like lists, but sets are generally unordered. There is no concept of a first, second, or last element in a set. Iterating over the elements in a set could result in a different enumeration of the elements each time. Elements in sets are also usually
+unique. For example, a set containing integers would only ever contain one instance of each integer. The value 10, for example, would only ever appear once. If you added 10 to a set that already contained it, the operation would have no effect on the set.
+
+Another type of dynamic array are associative arrays (sometimes called dictionaries). An associative array holds elements, but may not be restricted in how they are indexed. In particular, a language that supports associative arrays may allow you to use integers or strings as indices, or even any arbitrary object.
+
+One way to look at associative arrays is as a map. A map is a data structure that stores elements as key-value pairs. Both they keys and values could be any arbitrary type (integers or strings) or object depending on the language. You could map account numbers (stored as strings) to account objects, or vice versa. Using a smart data structure
+like a map can make data manipulation a lot easier and more straightforward.
+
+                   Heap Growth
+Allocated Heap            |
+Available Heap
+Available Stack
+Allocated Stack           ^
+Static Content(GLOBAL S)  |        
+Program Code        Stack Growth
+
+- Strings:
+
+A string is an ordered sequence of characters. 
+
+We’ve previously seen string data types as literals. Most languages allow you to define and use static string literals using the double quote syntax. We used strings to specify output formatting using printf() -style functions for example. When reading input from a user, we read it as a string and
+converted the input to numbers. We also described some basic operations on strings including concatenation. We now examine strings in more depth.
+
+Programming languages vary greatly in how they represent string data types.
+
+Some languages have string types built-in to the language and others require that you use arrays and yet others treat strings as a special type of object.
+
+One issue with string representations is determining where and how the string ends. Some languages use a length prefix string representation. The length (the number characters in the string) is stored in a special location at the beginning of a string. Then the string characters are stored as an array. Other Object-Oriented Programming (OOP) languages use a special character, the null-terminating character to denote the end of a string. Still other languages store strings as arrays or dynamic arrays.
+
+Other details vary as well. Most languages support the basic ASCII characters, others have full Unicode support or support Unicode through a library. Most languages also provide large libraries of functions and operations that make working with strings easier.
+
+Usually languages allow you to create and use string literals using the double quote syntax. Modifying a string or copying one string into another may be supported by the built-in assignment operator or it may require the use of a copy function. When copying strings, similar issues come into play as with arrays. The “copy” could be a shallow copy or a deep copy.
+
+More advanced operations on strings include concatenation which is the operation of combining one or more strings to create a new string.
+
+Another common operation is to extract a substring from a string, that is create a new string from a portion of another string. Some languages allow you to create arrays of strings or dynamic collections (lists or sets) of strings. for languages in which strings are arrays of characters, an array of strings might be implemented with a 2-dimensional array of characters.
+
+When processing strings there are several other standard operations. In particular, we often have need to make comparisons between two string variables or between a string variable and a literal. Some languages allow you to use the same operators such as == or even < to make comparisons between strings. The implied behavior would compare
+strings for equality (case sensitive) or for lexicographic order. For example “Apple” < “Banana” might evaluate to true because “Apple” precedes “Banana” in alphabetic order.
+
+Many languages, however, require that you make string comparisons using a function. Using the equality operator == may be correct syntactically, but is usually making a pointer or reference comparison which evaluates to true if and only if the two variables represent the same memory address. Even if two string variables have the same content, the equality operator may evaluate to false if they are distinct (deep) copies of the same string. Likewise, the inequality operators <, ≤, etc. may only be comparing memory addresses which is meaningless for comparing strings.
+
+The solution that many languages provide is the use of a comparator, which is either a function or an object that facilitates the comparison of strings (and more generally, any object). Generally, a comparator function takes two arguments, a, b and compares them, not just for equality, but for their relative order: does a “come before” b or does b “come before” a, or are they equal. To distinguish between these three cases, a comparator returns an integer value with the following general contract: it returns
+
+• Something negative if a < b
+• Zero if a = b
+• Something positive if a > b
+
+- Tokenizing:
+
+It is common to store different pieces of data as a string such that each individual piece of data is demarcated by some delimiter. For example, Comma Separated Values (CSV) or Tab Separated Values (TSV) data use commas and tabs to delimit data. For example, the string:
+
+Smith,Joe,12345678,1985-09-08
+
+is a CSV string holding data about a particular person (last name, first name, ID, date of birth). Often we need to process such strings to extract each individual piece of data.
+
+Processing such strings is usually referred to as parsing. In particular, a string is “split” into a collection of individual strings called tokens (thus the process is also sometimes referred to as tokenizing). In the example above, the string would be processed into 4 individual strings, Smith , Joe , 12345678 , and 1985-09-08 . Each string could
+further be tokenized if needed, such as parsing the date of birth to extract the year, month, and date.
+
+- File Input/Output:
+
+A file is a block of data used for storing information.
+Normally, we think of a file as something that is stored on a hard drive (or memory stick or other physical media),
+but the concept of a file is much more general. For example, when a file is loaded (“read”) by a program it then exists in main memory. An executable program itself is a file (containing instructions to be executed), both stored on the hard drive and run in memory.
+
+In a typical unix-based system, everything is a file. Directories are files, executables are files, devices are files, etc. Even the familiar standard input and standard output are buffers that are treated as files that can be read from or written to.
+
+Data files may be stored as binary data or as plaintext files. Plaintext files are still stored as binary data, but are stored in an encoding using the ASCII text values. Binary files will also have structure, but it depends on the application that produced the file to give meaning to the data. For example, an image file in a Joint Photographic Experts Group (JPEG) format is essentially just binary data but it has a very specific format that an image viewer would be able to process, but, say, a text editor would not.
+
+**Processing Files:
+
+In general, processing data in a file involves three basic steps:
+
+1.Open (or create) the file
+2.Read from (or write to) the file
+3.Close the file
+
+Depending on the language, the act of opening a file may determine if it will be read from or written to. When read from, the file is referred to as an input file while a file that is written to is an output file. Languages may also have different a different API or functions to read/write or append to a file.
+
+A file may be read line by line until the end of the end of the file has been reached. Languages usually support this by using a special End Of File (EOF) flag or value to indicate the end of a file has been reached.
+
+**Paths:
+
+When opening a file on a file system, it is necessary to specify which file you want to open. This is typically done by specifying at least the name of the file. Often files will have “extensions” which indicate the type of file it is such as .txt for text files or .html for HTML files. However, file extensions are only for organizational purposes and have no real bearing on what data is stored in the file.
+
+More important is the path of the file. Usually, if no path is specified, then implicitly we are opening the file in the Current Working Directory (CWD).
+
+When specifying a path we can either specify:
+
+1.Absolute path: An absolute path specifies each and every subdirectory in the file system from the root to the directory that the file is located in.(The root directory is the top-most directory in the file system.)
+
+*Windows systems use a backslash as a directory delimiter while the root directory is specified using a “volume” name such as C:\ . For example, an absolute path on a Windows system may look something like:
+
+C:\applications\users\data\data.txt
+
+*On a Unix-based system, a forward slash is used as a directory delimiter and the root directory is simply a single forward slash. The same directory structure in a Unix-based system would look like the following:
+
+/applications/users/data/data.txt
+
+2.Relative path: A path may also be relative to the current working directory. In most systems (Windows and Unix-based) the current directory is denoted using a single period, . . You can use this to specify directories deeper in the directory tree from the current directory. For example (in Unix),
+
+./app/data/data.txt
+
+would refer to the directory app in the current working directory, the directory data within that, and finally the file data.txt within that directory.
+
+*We can also refer to files further up the directory tree using the “parent” directory symbol which is two periods, .. . For example(in Unix),
+
+../../system/data.txt
+
+would refer to a file two levels up in the subdirectory system.
+
+**Error Handling:
+
+When dealing with ﬁles there are many potential error conditions that may be anticipated and may need to be dealt with. Some types of errors that can occur include the following:
 
 
 
