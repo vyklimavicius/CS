@@ -3054,7 +3054,7 @@ When dealing with ﬁles there are many potential error conditions that may be a
 
 When processing ﬁles the input/output may be either buﬀered or unbuﬀered. A buﬀered input or output “stream” is one in which data that is read/written is actually stored in memory in a “buﬀer” until such a time as the buﬀer is “ﬂushed” and the accumulated data is passed to/from the actual ﬁle.
 
-For example, in a buﬀered output ﬁle, our program could write several kilobytes of data to the output ﬁle, but it might not actually be written to the ﬁle right away. Instead, those kilobytes of data are stored in memory until the buﬀer ﬁlls up or some other event takes place to cause the buﬀer to be ﬂushed. At that point, the data stored in the buﬀer is emptied and written to the ﬁle.
+For example, in a buﬀered output ﬁle, our program could write several kilobytes of data to the output ﬁle, but it might not actually be written to the ﬁle right away. Instead,those kilobytes of data are stored in memory until the buﬀer ﬁlls up or some other event takes place to cause the buﬀer to be ﬂushed. At that point, the data stored in the buﬀer is emptied and written to the ﬁle.
 
 Buﬀered input/output is used because I/O operations are expensive in terms of system resources and can slow the system down. Because of this, it is better to keep I/O operations as infrequent as possible. Buﬀers help to reduce the number of I/O operations performed by a program by making them less frequent.
 
