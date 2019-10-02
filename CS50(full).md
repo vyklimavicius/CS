@@ -3317,15 +3317,19 @@ Page 242
 
 ** Scalable basically means that when the data gets bigger, how much the algorithm changes.(slow down)
 
-N# opeartions vs elements(data)
+- Time complexity :
+
+N# operations vs elements(data)
 
 - O(n) => The big O of N or linear time(is based on data). The number of operations increases proportionally.
 
 - O(1) => The big O of 1 or constant time(whatever you do the number of operations are going to be the same). It doesn't matter the size of the input(data).
 
+- O(log n) => Logarithmic, Finding an item in a sorted array with a binary search or a balanced search tree as well as all operations in a Binomial heap.
+
 - O(n^2) => Nested loops is a good example, O(n * n). Quadratic time. 
 
-- 
+- O(n!) => Factorial time, or o no. 
 
 Simplyfing Big O:
 
@@ -3340,7 +3344,15 @@ Rule 2 - Remove constants => Ignore Variable assignments and small calculations.
 Rule 3 - Different terms for inputs => 
 Rule 4 - Drop non dominants => Example: O(n + n^2) => this will be O(n^2), n is not dominant.
 
+- Pillars of programming:
+1.Readable
+2.Memory(Memory usage) => Space complexity
+3.Speed(Time complexity) => Running time
 
+Note: There is usually a tradeoff between speed and Memory, you want thinks to go faster you might sacrifice memory or you want less usage of memory you sacrifice speed.
 
+- Data structures:
+
+Is a collection of values.
 
  
