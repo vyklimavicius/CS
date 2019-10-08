@@ -3255,7 +3255,15 @@ Output: The n-th Fibonacci number, Fn
 7 output (a + b) 
 8 end
 
-Page 242
+- Searching & Sorting:
+
+Searching and sorting are two fundamental operations when dealing with collections of data. Both operations are not only important in and of themselves, but they also form the basis of many algorithms and other more complex operations. These operations are so essential that a wide variety of algorithms and techniques have been developed to solve them, each with their own advantages and disadvantages. This variety provides a good framework from which to study the relative eﬃciency and complexity of algorithms through algorithm analysis.
+
+ -Searching:
+ Searching is a very basic operation. Given a collection of data, we wish to ﬁnd a particular element or elements that match a certain criteria. More formally, we have the following.
+ Problem 1 (Searching). Given: a collection of elements, A = {a1,a2,...,an} and a key element ek Output: The element ai in A such that ai = ek
+
+ Page 245
 
 
 
