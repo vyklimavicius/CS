@@ -3263,7 +3263,43 @@ Searching and sorting are two fundamental operations when dealing with collectio
  Searching is a very basic operation. Given a collection of data, we wish to ﬁnd a particular element or elements that match a certain criteria. More formally, we have the following.
  Problem 1 (Searching). Given: a collection of elements, A = {a1,a2,...,an} and a key element ek Output: The element ai in A such that ai = ek
 
- Page 245
+The “equality” in this problem statement is not explicitly speciﬁed. In fact, this is a very general, abstract statement of the basic search problem. We didn’t specify that the “collection” was an array, a list, a set, or any other particular data structure. Nor did we specify what type of elements were in the collection. They could be numbers, they could be strings, they could be objects.
+
+When designing a solution to any of these variations additional considerations must be made. We may wish our search to be index-based (that is, output the index i rather than the element ai). We may need to think about how to handle unsuccessful searches (return null ? A special ﬂag value? Throw an exception?, etc.).
+
+When implementing a solution in a programming language, we of course will need to be more speciﬁc about the type of collection being searched and the type of elements in the collection. However, we will still want to keep our solution as general as possible. As we’ll see, most programming languages facilitate some sort of generic programming so that we do not need to reimplement the solution for each type of collection or for each type of variable. Instead, we can write one solution, then conﬁgure it to allow for comparisons of any type of variable (numeric, string, object, etc.).
+
+**Linear Search:
+
+The ﬁrst solution that we’ll look at is the linear search algorithm (also known as sequential search). This is a basic, straightforward solution to the search problem that works by simply iterating through each element ai, testing for equality, and outputting the ﬁrst element that matches the criteria.
+
+ The pseudocode is presented as Algorithm:
+
+ Input :A collection of elements A = {a1,...,an} and a key ek 
+ Output:An element a in A such that a = ek according to some criteria; φ if no such element exists 
+ 1 foreach ai in the collection A do 
+ 2 if ai = ek then 
+ 3 output ai 
+ 4 end 
+ 5 end 
+ 6 output φ
+
+ When an array is sorted, all elements in the left half are less than the middle element m, all elements in the right half are greater than m.
+
+A search for the key ek = 102 would start at the ﬁrst element. 42 6= 102 so the search would continue; it would compare it against 4, then 9, then 5, and ﬁnally ﬁnd 102 at index i = 4, making a total of 5 comparisons (including the ﬁnal comparison to the matched element).
+
+**Binary Search:
+
+An alternative search algorithm is binary search. This is a clever algorithm that requires that the array being searched is SORTED in ascending order. Though it works on any type of data, let’s again use an integer array as an example. Suppose we’re searching for the key element ek. We start by looking at the element in the middle of the array, call it m.
+
+Since the array is sorted, everything in the left-half of the array is < m and everything in the right-half of the array is > m.1 We will now make one comparison between ek and m. There are three cases to consider.
+1. If ek = m, then we’ve found an element that matches our key and search criteria and we are done. We can output m and stop the algorithm.
+2. If ek < m then we know that if a matching element exists, it must lie in the left-half of the list. This is because all elements in the right-half are > m.
+3. If ek > m then we know that if a matching element exists, it must lie in the right-half of the list. This is because all elements in the left-half are < m.
+
+page 248
+
+
 
 
 
