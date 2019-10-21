@@ -2061,6 +2061,11 @@ algorithm or process consisting of boxes or “nodes” connected by directed ed
 Boxes can represent an individual step or a decision to be made. 
 The edges establish an order of operations in the diagram.
 
+-Start/End => Shape is a rounded rectangle, is required in all flow charts. Some flow charts may not have an end.(Control)
+-Process => Shape is rectangular, Process involves the (Action) or the verb(what are we doing). Examples: 1.add 1, 2.turn the motor, 3.turn the light off
+-Input/output => Shape is a parallelogram, indicates that manual operation is needed. Example: 1.Type in in the weight.(Action)
+-Decision => Shape is a rhombus, outcome is either yes or no.(Decision)
+
 * Types of Flowchart Nodes. Control(Blue color) and action(green) nodes are distinguished by color. 
 Control nodes are automated steps 
 while action nodes are steps performed as part of the algorithm being depicted.
