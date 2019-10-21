@@ -3221,7 +3221,7 @@ Here, the invocation of bar() is the last operation performed by foo() . Thus, t
 
 Recursion is not essential; some languages do not even support recursion. In fact, any recursive function can be rewritten to not use recursion. Usually, you can write an equivalent loop structure or use an in-memory stack data structure to replace the recursion. So why use it?
 
-Proponents would argue that recursion allows you to write simple code that more closely matches mathematical functions and expressions. Recursion is also a natural way to think about certain problem solving techniques such as divideand-conquer. It is also a natural way to code in functional programming languages.
+Proponents would argue that recursion allows you to write simple code that more closely matches mathematical functions and expressions. Recursion is also a natural way to think about certain problem solving techniques such as divide and-conquer. It is also a natural way to code in functional programming languages.
 
 These arguments, however, are subjective. One person’s “cleaner” or “more understandable” code is another person’s spaghetti code hack. What is “natural” for one person may be “weird” and “odd” for another. However, there are many other arguments against recursion, many of which are objective reasons: that recursion is more expensive and can easily lead to ineﬃcient, exponential algorithms.
 
@@ -3297,9 +3297,46 @@ Since the array is sorted, everything in the left-half of the array is < m and e
 2. If ek < m then we know that if a matching element exists, it must lie in the left-half of the list. This is because all elements in the right-half are > m.
 3. If ek > m then we know that if a matching element exists, it must lie in the right-half of the list. This is because all elements in the left-half are < m.
 
-page 248
+**Sorting:
 
-Coming soon
+Sorting a collection of data is another fundamental data operation. It is conceptually simple, but is ubiquitous. There are a large variety of algorithms, data structures and applications built around the problem of sorting. As we’ve already seen, being able to sort a collection provides a huge speed up when searching for a particular element. Sorting provides a natural way to store and organize data.
+
+ 1.Selection Sort:
+ The ﬁrst sorting algorithm we’ll examine is Selection Sort which is similar to the way a human would sort a collection of objects. The basic idea is that you search through the collection and ﬁnd the minimal element (we say minimal and not minimum because there could be elements with the same value). Once we’ve found a minimal element, we can swap it with the “ﬁrst” element, a1, placing the minimal element where it belongs in the collection.
+
+ Ex:
+
+  Input :A collection A = {a1,...,an} 
+  Output:An array A0 containing all elements of A in nondecreasing order 
+  1 for i = 1,...,(n−1) do 
+  2 amin ← ai 
+  3 for j = (i + 1),...,n do 
+  4 if amin > aj then 
+  5 min ← aj 
+  6 end 
+  7 end 
+  8 swap amin and ai 
+  9 end
+
+ 2.Insertion Sort:
+ Another basic sorting algorithm is Insertion Sort which works slightly diﬀerently than Selection Sort. Rather than ﬁnding a minimal element and swapping with the “current” element, the current element is inserted in the list where it belongs. If we consider just the ﬁrst element, the collection is sorted by deﬁnition. Now consider the second element: either its greater than the ﬁrst element and so is already sorted, or it is less than the ﬁrst element and needs to be swapped.
+ 
+ Ex:
+
+ Input :A collection A = {a1,...,an} 
+ Output:An array A0 containing all elements of A in nondecreasing order 
+ 1 for i = 2,...,n do 
+ 2 x ← ai 
+ 3 j ← i 
+ 4 while j > 1 and aj−1 > x do 
+ 5 aj ← aj−1 
+ 6 decrement j 
+ 7 end 
+ 8 aj ← x 
+ 9 end
+
+ 3.Quick Sort:
+
 
 
 
@@ -3389,6 +3426,9 @@ Rule 1 - Worst case => Always give the Big O based on the worst scenario.
 Rule 2 - Remove constants => Ignore Variable assignments and small calculations. Example: O(2n) drop constants O(n)
 Rule 3 - Different terms for inputs => 
 Rule 4 - Drop non dominants => Example: O(n + n^2) => this will be O(n^2), n is not dominant.
+
+First bigO rule, scalability rule: Always figure out the worse case scenario.
+Second bigO rule, remove constants: We want to dropped the constants, example if O(1 + n/2 + 100), this removing the constants is  O(n)
 
 - Pillars of programming:
 1.Readable
