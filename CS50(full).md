@@ -2901,25 +2901,80 @@ Another problem arises if we want to return a static array from a function. Reca
 
 If a program has poor memory management and fails to deallocate memory when it is no longer needed, the memory “leaks”: the available memory gradually runs out because it is not released back to the heap for reallocation. Programs which such poor memory management are said to have a memory leak. Sometimes this is a consequence of a dangling pointer: when a program dynamically allocates a chunk of memory but then due to carelessness, loses the reference to the memory chunk,making it impossible to free up.
 
-** Shallow vs. Deep Copies:
+  ** Shallow vs. Deep Copies:
 
-In most languages, an array variable is actually a reference to the array in memory. We could create an array referred to by a variable A and then create another reference variable B and set it “equal” to A. However, this is simply a shallow copy. Both the reference variables refer to the same data in memory. Consequently, if we change the
-value of an element in one, the change is realized in both.
+  In most languages, an array variable is actually a reference to the array in memory. We could create an array referred to by a variable A and then create another reference variable B and set it “equal” to A. However, this is simply a shallow copy. Both the reference variables refer to the same data in memory. Consequently, if we change the
+  value of an element in one, the change is realized in both.
 
-Often, we want a completely different copy, referred to as a deep copy. With a deep copy, A and B would refer to different memory blocks. Changes to one would not affect the other.
+  Often, we want a completely different copy, referred to as a deep copy. With a deep copy, A and B would refer to different memory blocks. Changes to one would not affect the other.
 
-** Multidimensional Arrays:Aside from basic arrays, many languages have rich libraries of other dynamic collections.
-Dynamic collections are not the same thing as dynamically allocated arrays. Once an array is created, its size is fixed and cannot, in general, be changed. However, dynamic collections can grow (and shrink) as needed when you add or remove elements from them. A normal array is usually one dimensional. One can think an array as a single “row” in a table that contains a certain number of entries. Most programming languages allow you to define multidimensional arrays. For example, two dimensional arrays would model having multiple rows in a full table. You can also view two dimensional arrays as matrices in mathematics. A matrix is a rectangular array of numbers that have a certain number of rows and a certain number of columns.
+  ** Multidimensional Arrays:Aside from basic arrays, many languages have rich libraries of other dynamic collections.
+  Dynamic collections are not the same thing as dynamically allocated arrays. Once an array is created, its size is fixed and cannot, in general, be changed. However, dynamic collections can grow (and shrink) as needed when you add or remove elements from them. A normal array is usually one dimensional. One can think an array as a single “row” in a table that contains a certain number of entries. Most programming languages allow you to define multidimensional arrays. For example, two dimensional arrays would model having multiple rows in a full table. You can also view two dimensional arrays as matrices in mathematics. A matrix is a rectangular array of numbers that have a certain number of rows and a certain number of columns.
 
-As an example, consider the following 2 × 3 matrix (it has 2 rows and 3 columns):
+  As an example, consider the following 2 × 3 matrix (it has 2 rows and 3 columns):
 
-[1 9 −8]
-[2.5 3 5]
+  [1 9 −8]
+  [2.5 3 5]
 
-In mathematics, entries in a matrix are indexed via their row and column. For example, a i,j would refer to the element in the i-th row and j-th column. Referring to the row first and column second is referred to as row major ordering. If the number of rows and the number of columns are the same, the matrix is referred to as a square matrix.
+  In mathematics, entries in a matrix are indexed via their row and column. For example, a i,j would refer to the element in the i-th row and j-th column. Referring to the row first and column second is referred to as row major ordering. If the number of rows and the number of columns are the same, the matrix is referred to as a square matrix.
 
-We can do something similar in most programming languages. First, languages may vary in how you can create multidimensional arrays, but you usually have to provide a size for each dimension when you create them. Once created, you can index them byproviding multiple indices. For example, with a two dimensional array, we could provide
-two indices each in their own square brackets arr[i][j] referring to the i-th row and j-th column. Multidimensional arrays usually use the same 0-indexing scheme as single dimensional arrays.
+  We can do something similar in most programming languages. First, languages may vary in how you can create multidimensional arrays, but you usually have to provide a size for each dimension when you create them. Once created, you can index them byproviding multiple indices. For example, with a two dimensional array, we could provide
+  two indices each in their own square brackets arr[i][j] referring to the i-th row and j-th column. Multidimensional arrays usually use the same 0-indexing scheme as single dimensional arrays.
+
+  ** Background: Computer architecture:
+  How a program gets executed:
+
+  -Program executable starts out on Disk
+  -The OS loads the program into memory.
+  -CPU fetches instructions and data from memory while executing the program.
+
+  Terminology:
+  Segment: A chunk of memory assigned to a process.
+  Physical address: a real address in memory. Is where the real chunk is in your hardware.
+  Virtual address:  an address relative to the start of a process's address space. Is basically refering to a piece between the assignment of the memory to that process. Memory assignment for process start from 0 for each process. Is not tied to actual physical memory.
+
+  *Where do addresses come from?
+  How do programs generate instructions and data addresses? There are 3 ways the computer can do this:
+
+  -Compile time => The compiler generates the exact physical location in memory starting from fixed starting position k. The OS does nothing. In this case virtual and physical are the same.
+  -Load time => Compiler generates and address, but at load time the OS determines the process starting position. Once the process loads, it does not move in memory.
+  -Execution time => Compiler generates an address, and OS can place it anywhere it wants in memory.
+
+  *** What is uniprogramming:
+
+  Uniprogramming means one program sits in main memory at a time. Uniprogramming was used in old computers and mobiles. When the computer starts then operating system and application programs are loaded into main memory. We only count user programs running in RAM. RAM is also called main memory.
+
+  In old operating systems (OS) only one program runs on the computer at a time. Either of the browser, calculator or word processor runs at a time. These type of operating systems in which one program runs at a time are known as Uniprogramming operating systems.
+
+  -OS gets a fixed part of memory (highest memory in DOS)
+  -One process executes at a time
+  -Process is always loaded starting at address 0
+  -Process executes in a contiguous section of memory
+  -Compiler can generate physical address
+  -Maximum address = Memory size - OS size
+  -OS is protected from process by checking addresses used by process.
+
+  *** What is multiprogramming:
+
+  In multiprogramming, multiple programs reside in main memory (RAM) at a time. OS which handles multiple programs at a time is known as multiprogramming operating system. One processor or CPU can only run one process at a time. OS use context switching in main memory for running multiple programs. Context switching is to switch programs so all programs are given a suitable amount of time. OS can handle only a limited number of programs. If we run many programs on the computer or mobile then the computer becomes very slow or unresponsive.
+
+  Multiple programs share memory:
+  -Transparency
+  1.We want multiple processes to coexist in memory.
+  2.No process should be aware that memory is shared.
+  3.Processes should not care what physical portion of memory they are to assigned to.
+  -Safety 
+  1.Processes must not be able to corrupt each other.
+  2.Processes must not be able to corrupt the OS.
+  -Efficiency:
+  1.Performance of CPU and memory should not be degraded badly due to sharing.
+
+  **Uniprogramming vs multiprogramming:
+
+  In Uniprogramming only one program sits in main memory so it has a small size. But in the case of multiprogramming main memory needs more space. Uniprogramming system runs smoothly as only one task is run at a time. The slow processor can also work well in Uniprogramming but in multiprogramming processor needs to be fast. In multiprogramming large space of RAM is needed. Fixed size partition is used in Uniprogramming. Both fixed and variable size partition can be used in multiprogramming systems.
+
+  **Ideas of memeory management:
+  Relocation:
 
 ** Other Collections:
 
