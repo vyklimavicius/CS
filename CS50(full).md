@@ -2174,7 +2174,7 @@ letters is not the same variable as one that uses uppercase letters.
    - Declaring Variables: Dynamic vs. Static Typing:
 
  *A language that requires you to declare a variable and its type is a statically typed language.  
- *Typically interpreted languages, you do not have to declare a variable before using it,
+  *Typically interpreted languages, you do not have to declare a variable before using it,
   such languages are generally referred to as dynamically typed languages.
 
     At first glance it may seem that dynamically typed languages are better. Certainly they are more flexible 
@@ -3396,6 +3396,96 @@ Sorting a collection of data is another fundamental data operation. It is concep
  9 end
 
  3.Quick Sort:
+ Selection Sort and Insertion Sort are simple algorithms, but ineﬃcient, making a quadratic number of comparisons in even the average case. A more sophisticated and eﬃcient algorithm is Quick Sort, ﬁrst developed by Tony Hoare in the early 1960s.  Quick Sort is a divide-and-conquer style algorithm that attempts to solve the sorting problem by splitting a collection up into two parts, then recursively sorting each part.
+
+ The basic idea is as follows. First, choose a pivot element p in the collection. We will then partition all the elements in the collection around this pivot element by placing all elements less than p in the “left” partition and all elements greater than p in the “right” partition. This concept is similar to binary search. After partitioning all the elements, we place p between them so that p is where it needs to be. We then repeat this process on the two partitions recursively. The recursion stops when the size of the sub-collection is trivially sorted (it is empty or consists of a single element).
+ 
+ Ex:
+ Input :A collection A = {a1,...,an}, indices l,r 
+ Output:An index s such that the sub-collection A from l to r has been partitioned around s so that all elements al,...as−1 are less than as and all elements as+1,...,ar are greater than as 
+ 1 pivot ← al 
+ 2 i ← (l + 1) 
+ 3 j ← r 
+ 4 while i < j do 
+ 5 while i < j And ai ≤ pivot do 
+ 6 i ← (i + 1) 
+ 7 end 
+ 8 while i < j And aj ≥ pivot do 
+ 9 j ← (j −1) 
+ 10 end 
+ 11 swap ai, aj 
+ 12 end //Swap the pivot 
+ 13 if ai ≤ pivot then 
+ 14 swap pivot, ai 
+ 15 output i 
+ 16 else 
+ 17 swap pivot, ai−1 
+ 18 output (i−1) 
+ 19 end
+
+ 4.Merge Sort:
+
+ Another “fast” sorting algorithm is Merge Sort, due to John von Neumann, 1945 (as reported by Knuth).  The performance is similar to Quick Sort’s best/average case, making nlog(n) comparisons. However, Merge Sort’s performance does not depend on the structure of the input array or a pivot choice, guaranteeing this performance in the best/average/worst case.
+
+ Merge Sort works by ﬁrst dividing the list into two (roughly) equal partitions. It then recursively sorts each partition. The recursion stops when the subarray is of size ≤ 1 just as with Quick Sort. The diﬀerence, however, is what Merge Sort does after the recursion. After having sorted the left partition, L and the right partition R, Merge Sort merges the two sorted partitions into one.
+
+
+
+ Ex:
+ Input :Two sorted collections, L, R of size n,m respectively. 
+ Output:A sorted collection A consisting of all elements of L and R 
+ 1 A ← a new, empty collection 
+ 2 i ← 1 
+ 3 j ← 1 
+ 4 k ← 1 //index variable for A 
+ 5 
+ 6 while i ≤ n And j ≤ m do 
+ 7 if Li ≤ Ri then 
+ 8 Ak ← Li 
+ 9 i ← (i + 1) 
+ 10 else 
+ 11 Ak ← Lj 
+ 12 j ← (j + 1) 
+ 13 end 
+ 14 k ← (k + 1) 
+ 15 end //At least one collection is empty, we can blindly copy the other 
+ 16 while i ≤ n do 
+ 17 Ak ← Li 
+ 18 i ← (i + 1) 
+ 19 k ← (k + 1) 
+ 20 end 
+ 21 while j ≤ m do 
+ 22 Ak ← Rj 
+ 23 j ← (j + 1) 
+ 24 k ← (k + 1) 
+ 25 end 
+ 26 output A
+
+ Because Merge Sort divides the list ﬁrst, an even split is guaranteed. After the recursion, the Merge subroutine requires at most n−1 comparisons to merge the two collections. This leads to a recurrence relation similar to Quick Sort, C(n) = 2Cn 2+ (n−1) A similar analysis yields a complexity of nlog(n).
+
+ **Sorting Stability:
+
+ One desirable property of sorting algorithms is stability. A sorting algorithm is stable if the relative order of “equal” elements is preserved. For example, suppose we have the following integer values:
+
+ 10,2a,5,2b
+
+ The subscripts on the two 2 values are for demonstration purposes only. A stable sorting algorithm would sort the elements as:
+ 
+ 2a,2b,5,10
+
+ preserving the relative ordering of the two 2 elements. The element 2a came before 2b prior to sorting and remains so after sorting. However, an unstable sorting algorithm may instead produce 
+
+ 2b,2a,5,10
+
+ The collection is still sorted, but the two equal elements have been reversed from their original ordering.
+
+  Sorting stability is often desirable for data presentation. A user can typically sort table data by clicking on a column header. Suppose we sorted a table of students ﬁrst by GPA then by year. We would expect that all Freshman would be grouped together and within that group, would be ordered by GPA (because the ﬁrst ordering would be preserved). An unstable sorting algorithm would result in all Freshman being grouped together, but within that grouping, the students would not necessarily be ordered by GPA.
+
+  
+
+
+
+
 
 
 
