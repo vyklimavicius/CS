@@ -1966,7 +1966,7 @@ that it does not represent every detail appearing in the real syntax, but rather
 For instance, grouping parentheses are implicit in the tree structure, and a syntactic construct like an if-condition-then expression 
 may be denoted by means of a single node with three branches.
 
-==========================================CS INTRO================================================================
+==========================================CS INTRO===========================================================
 
 - Notes : 
 
@@ -2044,20 +2044,14 @@ Application Programmer Interface (API) for use by other programmers.
 
 - Control Flow: 
 
-This type of control flow is usually associated with a procedural programming paradigm (which is closely related to imperative or 
-structured programming paradigms). Though this text will mostly focus on languages that are procedural (or that have 
-strong procedural aspects), it is important to understand that there are other programming language paradigms. 
-Functional programming languages such as Scheme and Haskell achieve computation through the evaluation of mathematical 
-functions with as little or no (“pure” functional) state at all. Declarative languages such as those used in 
-database languages like SQL or in spreadsheets like Excel specify computation by expressing the logic of computation 
-rather than explicitly specifying control flow.
+This type of control flow is usually associated with a procedural programming paradigm (which is closely related to imperative or structured programming paradigms). Though this text will mostly focus on languages that are procedural (or that have strong procedural aspects), it is important to understand that there are other programming language paradigms. 
+Functional programming languages such as Scheme and Haskell achieve computation through the evaluation of mathematical functions with as little or no (“pure” functional) state at all. Declarative languages such as those used in database languages like SQL or in spreadsheets like Excel specify computation by expressing the logic of computation rather than explicitly specifying control flow.
  For a more formal introduction to programming language paradigms, 
  a good resource is Seven Languages in Seven Weeks: A Pragmatic Guide to Learning Programming Languages by Tate [36].
 
 - Flowcharts:
 
-Sometimes processes are described using diagrams called flowcharts. A flowchart is a visual representation of an 
-algorithm or process consisting of boxes or “nodes” connected by directed edges. 
+Sometimes processes are described using diagrams called flowcharts. A flowchart is a visual representation of an algorithm or process consisting of boxes or “nodes” connected by directed edges. 
 Boxes can represent an individual step or a decision to be made. 
 The edges establish an order of operations in the diagram.
 
@@ -2072,31 +2066,25 @@ while action nodes are steps performed as part of the algorithm being depicted.
 * Some boxes represent decisions to be made which may have one or more alternate routes 
 (more than one directed edge going out of the box) depending on the the result of the Decision.
 
---------------------------------------------VARIABLES------------------------------------------------------------------
+--------------------------------------------VARIABLES-----------------------------------------------------------
 
 * Variables: In general, most programming languages allow you to use a combination of uppercase A-Z and lowercase a-z 
 letters as well as numbers, [0-9] and certain special characters such as underscores _ or dollar signs, $ . 
-Moreover, most programming languages (like English) are case sensitive meaning that a variable name using lowercase 
-letters is not the same variable as one that uses uppercase letters.
+Moreover, most programming languages (like English) are case sensitive meaning that a variable name using lowercase letters is not the same variable as one that uses uppercase letters.
 
  - Naming Rules & Conventions:
 
- => There are several general conventions when it comes to variables. An early convention, but still in common use is 
- underscore casing in which variable names consisting of more than one word have words separated by underscore 
- characters with all other characters being lowercase. For example:
+ => There are several general conventions when it comes to variables. An early convention, but still in common use is underscore casing in which variable names consisting of more than one word have words separated by underscore characters with all other characters being lowercase. For example:
  
  average_score, number_of_students, miles_per_hour
 
   A variation on this convention is to use all uppercase letters such as MILES_PER_HOUR.
 
- => A more modern convention is to use lower camel casing (or just camel casing) in which variable names with multiple 
- words are written as one long word with the first letter in each new word capitalized but with the first word’s first 
- letter lowercase. For example:
+ => A more modern convention is to use lower camel casing (or just camel casing) in which variable names with multiple words are written as one long word with the first letter in each new word capitalized but with the first word’s first letter lowercase. For example:
   
  averageScore, numberOfStudents, milesPerHour
 
- => another similar convention is upper camel casing, also known as "PascalCase" which is like camel casing, but the 
- first letter in the first word is also capitalized:
+ => another similar convention is upper camel casing, also known as "PascalCase" which is like camel casing, but the first letter in the first word is also capitalized:
  
  AverageScore, NumberOfStudents, MilesPerHour
 
@@ -2121,22 +2109,18 @@ letters is not the same variable as one that uses uppercase letters.
  - Types: 
 
  A variable’s type (or data type) is the characterization of the data that it represents. As mentioned before, 
- a computer only “speaks” in 0s and 1s (binary). A variable is merely a memory location in which a series of 0s and 1s 
- is stored.
+ a computer only “speaks” in 0s and 1s (binary). A variable is merely a memory location in which a series of 0s and 1s is stored.
 
  The type of a variable is important because it affects how the raw binary data stored at a memory location is interpreted. 
- Moreover, some types take a different amount of memory to store. For example, an integer type could take 32 bits while 
- a floating point type could take 64 bits. Programming languages may support different types and may do so in different 
+ Moreover, some types take a different amount of memory to store. For example, an integer type could take 32 bits while a floating point type could take 64 bits. Programming languages may support different types and may do so in different 
  ways.
 
- => Numeric types: There are several numeric types that are supported by various programming languages. The most simple 
- is an integer type which can represent whole numbers 0, 1, 2, etc. and their negations, −1,−2,.... Floating point 
- numeric types represent decimal numbers such as 0.5, 3.14, 4.0, etc. However, neither integer nor floating point numbers 
- can represent every possible number since they use a finite number of bits to represent the number.
+ => Numeric types: There are several numeric types that are supported by various programming languages. The most simple is an integer type which can represent whole numbers 0, 1, 2, etc. and their negations, −1,−2,....
 
-  As humans, we “think” in base-10 (decimal) because we have 10 fingers and 10 toes. When we write a number with 
-  multiple digits in base-10 we do so using “places” (ones place, tens place, hundreds place, etc.). Mathematically, 
-  a number in base-10 can be broken down into powers of ten; for example:
+ Floating point 
+ numeric types represent decimal numbers such as 0.5, 3.14, 4.0, etc. However, neither integer nor floating point numbers can represent every possible number since they use a finite number of bits to represent the number.
+
+  As humans, we “think” in base-10 (decimal) because we have 10 fingers and 10 toes. When we write a number with multiple digits in base-10 we do so using “places” (ones place, tens place, hundreds place, etc.). Mathematically, a number in base-10 can be broken down into powers of ten; for example:
 
   3,201=3×103 +2×102 +0×101 +1×100
 
@@ -2165,21 +2149,20 @@ letters is not the same variable as one that uses uppercase letters.
    one bit to represent the sign.
 
    n (number of bits)       minimum                                maximum
-   8                         -128                                    127
-   16                        -32,768                                 32,767
-   32                        -2,147,483,648                          2,147,483,647
+   8                                    -128                                          127
+   16                                  -32,768                                   32,767
+   32                            -2,147,483,648                          2,147,483,647
    64                        -9,223,372,036,854,775,808              9,223,372,036,854,775,807
    128                       ≈ −3.4028 × 10**38                      ≈ 3.4028 × 10**38
 
    - Declaring Variables: Dynamic vs. Static Typing:
 
- *A language that requires you to declare a variable and its type is a statically typed language.  
+*A language that requires you to declare a variable and its type is a statically typed language.  
   *Typically interpreted languages, you do not have to declare a variable before using it,
-  such languages are generally referred to as dynamically typed languages.
+   such languages are generally referred to as dynamically typed languages.
 
     At first glance it may seem that dynamically typed languages are better. Certainly they are more flexible 
-    (and allow you to write less so-called “boilerplate” code), but that flexibility comes at a cost. Dynamically typed 
-    variables are generally less efficient. Moreover, dynamic typing opens the door to a lot of potential type mismatching errors. 
+    (and allow you to write less so-called “boilerplate” code), but that flexibility comes at a cost. Dynamically typed variables are generally less efficient. Moreover, dynamic typing opens the door to a lot of potential type mismatching errors. 
     For example, you may have a variable that is assumed to always be an integer. 
     In a dynamically typed language, no such assumption is valid as a reassignment can change the variable’s type. 
 
@@ -2193,8 +2176,7 @@ In a statically typed language, a variable must be declared before it can be use
 
   - Operators:
 
-Now that we have variables, we need a way to work with variables. That is, given two variables we may wish to add them together. 
-Or we may wish to take two strings and combine them to form a new string. 
+Now that we have variables, we need a way to work with variables. That is, given two variables we may wish to add them together. Or we may wish to take two strings and combine them to form a new string. 
 In programming languages this is accomplished through operators which operate on one or more operands. An operator takes the values of its operands and combines them in some way to produce a new value.
 
   ex:
@@ -2211,7 +2193,7 @@ In programming languages this is accomplished through operators which operate on
 
   - Assignment Operators:
 
-unary: (especially of a mathematical operation) consisting of or involving a single component or element.
+ unary: (especially of a mathematical operation) consisting of or involving a single component or element.
 
   The assignment operator is a unary operator that allows you to take a value and assign it to a variable.
 
@@ -3480,6 +3462,35 @@ Sorting a collection of data is another fundamental data operation. It is concep
  The collection is still sorted, but the two equal elements have been reversed from their original ordering.
 
   Sorting stability is often desirable for data presentation. A user can typically sort table data by clicking on a column header. Suppose we sorted a table of students ﬁrst by GPA then by year. We would expect that all Freshman would be grouped together and within that group, would be ordered by GPA (because the ﬁrst ordering would be preserved). An unstable sorting algorithm would result in all Freshman being grouped together, but within that grouping, the students would not necessarily be ordered by GPA.
+
+  ** CPU
+  Instruction table has 4-bit opcode(operation code) and 4-bit last numbers as ram address or registers. 
+
+  cpu phases:
+  1. Fetch phase => 
+    This is were we retrieve our first instruction
+    When we first boot up our computer all of our registers starts at 0.
+   -Instruction address register =>(when we load a process)(To keep track were we are on a program) it starts at 0 and check the data on that address. That becomes and instruction register
+   -Instruction register => 4-bit opcode(operation code) and 4-bit last numbers as ram address or registers.
+  2. Decode phase => Takes the 4-bit last numbers as ram address or registers from Instruction register and gets the instruction.
+  3. Execution phase => with the instruction register 4 last bits we get the data from that ram frame(decimal value of the 4 binary bits) then it gets into our register A in this case from our Load_instruction A.
+  Load_A is just one of the possible instructions our CPU has to execute from a system or process.
+
+  All this cycle is handle by the Control Unit.
+  After this the cycle repeats for next instruction.
+
+The responsibility of keeping the CPU through it cycle and ticking falls to a component called the clock.
+The clock triggers and electrical signal at a precise and regular interval. Its signal its used by the control unit to advance the internal operation of the cpu keeping everything in lock step. Of course you can go to fast, because even electricity  takes some time to travel down wires and for the signal to settle.
+
+The speed at which a cpu can carry out each step of the fetch-decode-execution cycle is called its clock speed.
+This speed is measured in Hertz. A unit in frequency, One Hertz means one cycle per second.
+
+1Mhz = One million cycles per second
+1 Ghz = Is billions of cycles per second
+
+Overclocking is when you modified the clock to speed up the tempo of the Processor Unit but too much can overheat the Unit. Increasing or decreasing clock speed is called dynamic frequency scaling.
+
+CPU and RAM components communicate itself using address, data and enable wires.
 
   
 
