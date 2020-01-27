@@ -382,6 +382,9 @@ Entire directories is rm -r <directory>, you combine rm -r with -rf like rm -rf 
 
   -0-------------------------------------------------------------------------------------------2^64-1 //unsigned
 
+ Overflow and Underflow: If you try to put a value larger than the maximum value of accepted integer or a value smaller than the minimum value, then you will get an Overflow in the case of the maximum value or an Underflow in the case of the minimum. The CPU will just skip back to the minimum number or the maximum number, which is usually not what you want. It's an important concept to be aware of.
+
+
  - Two's complement: 
  Two's complement is a mathematical operation on binary numbers, and is an example of a radix complement. It is used in computing as a method of signed number representation.
 
@@ -2105,6 +2108,12 @@ Moreover, most programming languages (like English) are case sensitive meaning t
 
  * In the end, a good balance must be struck between readability and consistency. Rules and conventions should be followed, 
  until they get in the way of good code that is.
+
+ - Primitive data types:
+ In computer science, primitive data type is either of the following:
+
+  -a basic type is a data type provided by a programming language as a basic building block. Most languages allow more complicated composite types to be recursively constructed starting from basic types.
+  -a built-in type is a data type for which the programming language provides built-in support.
   
  - Types: 
 
