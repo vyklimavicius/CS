@@ -2429,7 +2429,7 @@ program are specified by coding logical statements using logical operators.
  * Other Considerations:
 
 Some dynamically typed languages (PHP, JavaScript, etc.) have additional rules when comparison operators are used with mixed types (that is, we compare a string with a numeric type). They may even have additional “strict” comparison operators such as
-and   which are true only if the values and types match. So, for example,   may be true because the values match, but (10 === "10")
+and which are true only if the values and types match. So, for example,   may be true because the values match, but (10 === "10")
 would be false since the types do not match (one is an integer, the other a string).
 
  - Negation: (!) or pseudocode(¬)
